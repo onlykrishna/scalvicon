@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "scalvicon"
+  },
+  "targets": {
+    "scalvicon": {
+      "hosting": {
+        "scalvicon-9bf2f": [
+          "scalvicon-9bf2f"
+        ]
+      }
+    }
+  }
+}

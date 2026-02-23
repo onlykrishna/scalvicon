@@ -1,61 +1,127 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
-import { fadeUp, fadeUpWithDelay } from "@/lib/animations";
+import {
+    Globe,
+    CalendarCheck,
+    ShoppingBag,
+    Building2,
+    Search,
+    Wrench,
+} from "lucide-react";
+import { fadeUp, stagger } from "@/lib/animations";
+import { cn } from "@/lib/utils";
 
-const plans = [
-  {
-    name: "Starter", price: "₹15,000", period: "one-time",
-    color: "border-t-accent-blue", accent: "text-accent-blue",
-    features: ["5-page responsive website", "Mobile-friendly design", "Contact form", "Basic SEO setup", "1 revision round"],
-    popular: false,
-  },
-  {
-    name: "Business", price: "₹35,000", period: "one-time",
-    color: "border-t-primary", accent: "text-primary",
-    features: ["10-page custom website", "Advanced UI/UX design", "WhatsApp integration", "Google Maps & Reviews", "On-page SEO", "3 revision rounds", "Free 1-month support"],
-    popular: true,
-  },
-  {
-    name: "Premium", price: "₹75,000", period: "one-time",
-    color: "border-t-gold", accent: "text-gold",
-    features: ["Unlimited pages", "Custom animations & effects", "Booking/appointment system", "Payment gateway", "Advanced SEO & Analytics", "Priority support (3 months)", "Unlimited revisions"],
-    popular: false,
-  },
+const services = [
+    {
+        icon: Globe,
+        title: "Business Website",
+        description:
+            "Your 24/7 digital storefront. Professional, fast, and built to make your business look its absolute best online.",
+        gradient: "from-primary/20 to-primary/5",
+        iconColor: "text-primary",
+    },
+    {
+        icon: CalendarCheck,
+        title: "Booking & Appointment Sites",
+        description:
+            "Let customers book directly from your website. Integrated calendar, WhatsApp confirmations, and zero missed leads.",
+        gradient: "from-accent-blue/20 to-accent-blue/5",
+        iconColor: "text-accent-blue",
+    },
+    {
+        icon: ShoppingBag,
+        title: "E-commerce & Online Store",
+        description:
+            "Sell your products online with Razorpay/UPI payment gateway, inventory management, and order tracking.",
+        gradient: "from-gold/20 to-gold/5",
+        iconColor: "text-gold",
+    },
+    {
+        icon: Building2,
+        title: "Real Estate Portals",
+        description:
+            "Showcase properties with dynamic listings, virtual tour links, and automated lead capture to your WhatsApp.",
+        gradient: "from-accent-orange/20 to-accent-orange/5",
+        iconColor: "text-accent-orange",
+    },
+    {
+        icon: Search,
+        title: "SEO & Google Presence",
+        description:
+            "Rank on page 1 for local searches. We handle keyword research, on-page SEO, Google Business Profile, and Search Console.",
+        gradient: "from-purple-500/20 to-purple-500/5",
+        iconColor: "text-purple-400",
+    },
+    {
+        icon: Wrench,
+        title: "Website Revamp",
+        description:
+            "Your existing site is outdated or slow? We rebuild it from scratch — faster, modern, mobile-first — in 4 weeks.",
+        gradient: "from-emerald-500/20 to-emerald-500/5",
+        iconColor: "text-emerald-400",
+    },
 ];
 
 const Services = () => (
-  <section id="services" className="section-padding dot-grid-bg relative">
-    <div className="container mx-auto px-4 md:px-8">
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center mb-16">
-        <span className="text-primary font-mono text-xs uppercase tracking-widest">Packages</span>
-        <h2 className="font-display font-extrabold text-foreground mt-3" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>Simple, Transparent Pricing</h2>
-        <p className="text-muted-foreground mt-3 max-w-md mx-auto">No hidden costs. Choose what works best for your business.</p>
-      </motion.div>
+    <section id="services" className="section-padding relative">
+        <div className="container mx-auto px-4 md:px-8">
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeUp}
+                className="text-center mb-16"
+            >
+                <span className="text-primary font-mono text-xs uppercase tracking-widest">
+                    What We Do
+                </span>
+                <h2
+                    className="font-display font-extrabold text-foreground mt-3"
+                    style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
+                >
+                    What We Build For You
+                </h2>
+                <p className="text-muted-foreground mt-3 max-w-lg mx-auto">
+                    Every website is custom-crafted for your industry and built to
+                    convert visitors into customers.
+                </p>
+            </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start">
-        {plans.map((plan, i) => (
-          <motion.div key={plan.name} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUpWithDelay(i * 0.1)} whileHover={{ y: -6 }}
-            className={`relative bg-card rounded-card card-shadow border border-border border-t-[3px] ${plan.color} p-8 ${plan.popular ? "md:scale-105 md:z-10" : ""}`}>
-            {plan.popular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">Most Popular</span>}
-            <p className={`text-xs uppercase tracking-widest font-mono ${plan.accent}`}>{plan.name}</p>
-            <p className="font-display font-extrabold text-foreground text-4xl mt-3">{plan.price}</p>
-            <p className="text-muted-foreground text-sm mt-1">{plan.period}</p>
-            <div className="h-px bg-border my-6" />
-            <ul className="space-y-3">
-              {plan.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-foreground/80">
-                  <Check size={16} className={`mt-0.5 shrink-0 ${plan.accent}`} />{f}
-                </li>
-              ))}
-            </ul>
-            <button className={`w-full mt-8 py-3 rounded-button font-semibold text-sm transition-all ${plan.popular ? "bg-primary text-primary-foreground glow-green hover:brightness-110" : "border border-foreground/10 text-foreground hover:bg-foreground/5"}`}>
-              Get Started
-            </button>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={stagger}
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+                {services.map((service) => (
+                    <motion.div
+                        key={service.title}
+                        variants={fadeUp}
+                        whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                        className={cn(
+                            "group bg-card rounded-card border border-white/[0.06] p-6 space-y-4",
+                            "hover:border-primary/30 transition-all duration-300 card-shadow",
+                        )}
+                    >
+                        <div
+                            className={cn(
+                                "w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br",
+                                service.gradient,
+                            )}
+                        >
+                            <service.icon size={22} className={service.iconColor} />
+                        </div>
+                        <h3 className="font-display font-bold text-foreground text-lg">
+                            {service.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                            {service.description}
+                        </p>
+                    </motion.div>
+                ))}
+            </motion.div>
+        </div>
+    </section>
 );
 
 export default Services;

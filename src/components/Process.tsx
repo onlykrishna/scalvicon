@@ -2,12 +2,43 @@ import { motion } from "framer-motion";
 import { fadeUp, fadeUpWithDelay } from "@/lib/animations";
 
 const steps = [
-  { week: "Week 1", title: "Discovery", details: "Understand your business, goals, and audience", color: "bg-primary", textColor: "text-primary" },
-  { week: "Week 1-2", title: "Design", details: "Craft stunning mockups tailored to your brand", color: "bg-accent-blue", textColor: "text-accent-blue" },
-  { week: "Week 2-3", title: "Develop", details: "Build a fast, responsive, SEO-optimized site", color: "bg-gold", textColor: "text-gold" },
-  { week: "Week 3-4", title: "Test & Refine", details: "QA, performance tuning, and your feedback", color: "bg-accent-orange", textColor: "text-accent-orange" },
-  { week: "Week 4", title: "Launch!", details: "Go live with full support and training", color: "bg-primary", textColor: "text-primary" },
+  {
+    week: "Week 1",
+    title: "Discovery & Design",
+    details: "We learn your business, competitors, and goals. Then deliver 2 custom design concepts — you pick your favourite.",
+    color: "bg-primary",
+    textColor: "text-primary",
+  },
+  {
+    week: "Week 2",
+    title: "Development",
+    details: "Your approved design goes into production. Mobile-first, fast, clean code. Built for speed and conversions.",
+    color: "bg-accent-blue",
+    textColor: "text-accent-blue",
+  },
+  {
+    week: "Week 3",
+    title: "Content & Integrations",
+    details: "We add your content, connect WhatsApp, Google Maps, and all third-party tools. SEO copy written by us.",
+    color: "bg-gold",
+    textColor: "text-gold",
+  },
+  {
+    week: "Week 4",
+    title: "Testing & Launch",
+    details: "Cross-browser testing, speed optimization, and go-live. You get a Loom walkthrough video of your site.",
+    color: "bg-accent-orange",
+    textColor: "text-accent-orange",
+  },
+  {
+    week: "Ongoing",
+    title: "Support & Growth",
+    details: "30-day post-launch warranty. Monthly maintenance plans for hosting, backups, and content updates.",
+    color: "bg-primary",
+    textColor: "text-primary",
+  },
 ];
+
 
 const Process = () => (
   <section id="process" className="section-padding dot-grid-bg relative">

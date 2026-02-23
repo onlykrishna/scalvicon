@@ -1,54 +1,126 @@
 import { motion } from "framer-motion";
-import { Star, Zap, BarChart3, Clock, HeartHandshake } from "lucide-react";
-import { fadeUp, fadeUpWithDelay } from "@/lib/animations";
+import { Star, TrendingUp, Calendar, Home, UtensilsCrossed, type LucideIcon } from "lucide-react";
+import { fadeUp, fadeUpWithDelay, stagger } from "@/lib/animations";
+import { testimonials } from "@/data/testimonials";
 
-const testimonials = [
-  { quote: "WebCraft transformed our online presence completely. Our restaurant bookings tripled within the first month!", name: "Rajesh Kumar", role: "Owner, Spice Garden", initial: "R", bg: "bg-primary/20" },
-  { quote: "Professional, fast, and they truly understand what Indian businesses need. Best investment we made this year.", name: "Dr. Sneha Patel", role: "Director, CareFirst Clinic", initial: "S", bg: "bg-accent-blue/20" },
-  { quote: "Our salon's website looks absolutely stunning. Clients constantly tell us how easy it is to book online now.", name: "Anita Sharma", role: "Founder, Glow Studio", initial: "A", bg: "bg-gold/20" },
-];
+const metricIconMap: Record<string, LucideIcon> = {
+  TrendingUp,
+  Calendar,
+  Home,
+  UtensilsCrossed,
+};
 
-const differentiators = [
-  { icon: Clock, label: "4-6 week delivery" },
-  { icon: BarChart3, label: "Results-focused" },
-  { icon: HeartHandshake, label: "Dedicated support" },
-  { icon: Zap, label: "90+ PageSpeed" },
+const siteStats = [
+  { value: "50+", label: "Websites Delivered" },
+  { value: "4.9★", label: "Average Rating" },
+  { value: "₹0", label: "Hidden Fees" },
+  { value: "100%", label: "On-Time Delivery" },
 ];
 
 const Testimonials = () => (
-  <section className="section-padding relative">
-    <div className="container mx-auto px-4 md:px-8">
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="text-center mb-16">
-        <span className="text-primary font-mono text-xs uppercase tracking-widest">Testimonials</span>
-        <h2 className="font-display font-extrabold text-foreground mt-3" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>Loved by Business Owners</h2>
+  <section id="testimonials" className="section-padding relative">
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none" />
+    <div className="container mx-auto px-4 md:px-8 relative z-10">
+      {/* Heading */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeUp}
+        className="text-center mb-12"
+      >
+        <span className="text-primary font-mono text-xs uppercase tracking-widest">
+          Client Stories
+        </span>
+        <h2
+          className="font-display font-extrabold text-foreground mt-3"
+          style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
+        >
+          Businesses That Grew With Us
+        </h2>
+        <p className="text-muted-foreground mt-3 max-w-md mx-auto">
+          Real results for real Indian businesses. No paid reviews, no stock photos.
+        </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {testimonials.map((t, i) => (
-          <motion.div key={t.name} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpWithDelay(i * 0.1)} whileHover={{ y: -6 }}
-            className="bg-card rounded-card card-shadow border border-border p-6 space-y-4">
-            <div className="flex gap-1">{[...Array(5)].map((_, j) => <Star key={j} size={16} className="fill-gold text-gold" />)}</div>
-            <p className="text-foreground/90 italic text-sm leading-relaxed">"{t.quote}"</p>
-            <div className="h-px bg-border" />
-            <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-full ${t.bg} flex items-center justify-center font-display font-bold text-sm text-primary`}>{t.initial}</div>
-              <div>
-                <p className="text-foreground text-sm font-semibold">{t.name}</p>
-                <p className="text-muted-foreground text-xs">{t.role}</p>
-              </div>
-            </div>
+      {/* Stats row */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={stagger}
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14"
+      >
+        {siteStats.map((stat, i) => (
+          <motion.div
+            key={stat.label}
+            variants={fadeUpWithDelay(i * 0.08)}
+            className="bg-card rounded-card border border-border p-5 text-center card-shadow"
+          >
+            <p className="font-display font-extrabold text-2xl text-primary">
+              {stat.value}
+            </p>
+            <p className="text-muted-foreground text-xs mt-1">{stat.label}</p>
           </motion.div>
         ))}
-      </div>
-
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex flex-wrap justify-center gap-4 mt-12">
-        {differentiators.map((d) => (
-          <div key={d.label} className="flex items-center gap-2 bg-card border border-border rounded-full px-5 py-2.5">
-            <d.icon size={16} className="text-primary" />
-            <span className="text-foreground text-sm font-medium">{d.label}</span>
-          </div>
-        ))}
       </motion.div>
+
+      {/* Testimonial cards */}
+      <div className="grid md:grid-cols-2 gap-6">
+        {testimonials.map((t, i) => {
+          const MetricIcon = metricIconMap[t.metricIcon] ?? TrendingUp;
+          return (
+            <motion.div
+              key={t.id}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={fadeUpWithDelay(i * 0.1)}
+              className="bg-card rounded-card border border-border p-6 card-shadow flex flex-col gap-4"
+            >
+              {/* Stars */}
+              <div className="flex gap-0.5">
+                {Array.from({ length: t.rating }).map((_, si) => (
+                  <Star key={si} size={14} className="fill-gold text-gold" />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="text-foreground/80 text-sm leading-relaxed flex-1">
+                "{t.text}"
+              </p>
+
+              {/* Metric badge */}
+              <span
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-medium px-3 py-1.5 rounded-full w-fit"
+                style={{
+                  background: "rgba(0, 229, 160, 0.08)",
+                  border: "1px solid rgba(0, 229, 160, 0.2)",
+                  color: "hsl(162, 100%, 45%)",
+                }}
+              >
+                <MetricIcon size={12} />
+                {t.metric}
+              </span>
+
+              {/* Author */}
+              <div className="flex items-center gap-3 pt-1 border-t border-border">
+                <div
+                  className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.avatarColor} flex items-center justify-center text-xs font-bold text-white font-display shrink-0`}
+                >
+                  {t.avatar}
+                </div>
+                <div>
+                  <p className="text-foreground font-semibold text-sm">{t.name}</p>
+                  <p className="text-muted-foreground text-xs">
+                    {t.role}, {t.business} · {t.location}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
     </div>
   </section>
 );

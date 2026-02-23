@@ -1,12 +1,12 @@
 const items = [
-  "🍽️ Restaurants",
-  "🏥 Clinics",
-  "💇 Salons",
-  "🏠 Real Estate",
-  "🛒 Retail Stores",
-  "🎓 Education",
-  "🧘 Wellness",
-  "⚖️ Legal Firms",
+  { label: "🍽️ Restaurants" },
+  { label: "🏥 Clinics" },
+  { label: "💇 Salons" },
+  { label: "🏠 Real Estate" },
+  { label: "🛒 Retail Stores" },
+  { label: "🎓 Education" },
+  { label: "🧘 Wellness" },
+  { label: "⚖️ Legal Firms" },
 ];
 
 const MarqueeTicker = () => (
@@ -14,10 +14,10 @@ const MarqueeTicker = () => (
     <div className="flex animate-ticker whitespace-nowrap">
       {[...items, ...items].map((item, i) => (
         <span
-          key={i}
+          key={`${item.label}-${i}`}
           className="mx-8 text-muted-foreground text-sm font-mono uppercase tracking-wider flex items-center gap-2"
         >
-          {item}
+          {item.label}
           <span className="text-primary/40">•</span>
         </span>
       ))}

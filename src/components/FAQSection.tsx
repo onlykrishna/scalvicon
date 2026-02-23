@@ -2,15 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
+import { faqs } from "@/data/faq";
 
-const faqs = [
-  { q: "How long does it take to build a website?", a: "Most projects are completed in 4-6 weeks. Starter packages can be done in 2-3 weeks, while Premium projects with custom features may take up to 6 weeks." },
-  { q: "Do you work with businesses outside of India?", a: "While we specialize in Indian SMEs, we work with businesses globally. Our pricing and approach are tailored for the Indian market, but our quality is world-class." },
-  { q: "What if I need changes after the website is live?", a: "All plans include revision rounds. Business and Premium plans come with free support periods. We also offer affordable monthly retainer plans for ongoing maintenance." },
-  { q: "Do you handle hosting and domain?", a: "Yes! We can set up hosting and domain for you, or work with your existing providers. We recommend reliable hosting solutions optimized for Indian audiences." },
-  { q: "Will my website be mobile-friendly?", a: "Absolutely. Every website we build is fully responsive and tested across all devices. Mobile performance is a top priority — over 70% of Indian web traffic comes from phones." },
-  { q: "Can I update the website myself?", a: "Yes. We build with user-friendly CMS options and provide training so you or your team can easily update content, images, and more without any technical knowledge." },
-];
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
