@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper ───────────────────────────────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email == "krishnamaurya2204@gmail.com";
+    }
+
+    // ── Users ─────────────────────────────────────────────────────────────────
+    // Authenticated users can read/write their own user doc
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // ── Leads ─────────────────────────────────────────────────────────────────
+    // Anyone authenticated can create a lead (from contact form)
+    // Only admin can read / update / delete leads
+    match /leads/{leadId} {
+      allow create: if isSignedIn();
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ── Blog ─────────────────────────────────────────────────────────────────
+    // PUBLIC can read published blog posts (no auth required)
+    // Only admin can create / update / delete blog posts
+    match /blog/{postId} {
+      allow read: if true;           // Public read — anyone can view published posts
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ── Projects ─────────────────────────────────────────────────────────────
+    // Only admin can manage projects
+    match /projects/{projectId} {
+      allow read: if isSignedIn();   // Authenticated users can view their projects
+      allow create, update, delete: if isAdmin();
+    }
+
+  }
+}
