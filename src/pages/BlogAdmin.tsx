@@ -78,27 +78,41 @@ const PostFormModal = ({
 
     const handleSave = async () => {
         if (!form.title?.trim()) { toast.error("Title is required"); return; }
+        if (!form.content?.trim()) { toast.error("Content is required"); return; }
         if (!form.excerpt?.trim()) { toast.error("Excerpt is required"); return; }
         setSaving(true);
         try {
-            const payload = {
-                ...form,
+            const isPublishing = form.status === "published";
+            const payload: Record<string, unknown> = {
+                title: form.title,
                 slug: form.slug || slugify(form.title!),
+                excerpt: form.excerpt,
+                content: form.content,
+                coverImage: form.coverImage ?? null,
+                author: form.author ?? { name: "Scalvicon Team" },
+                category: form.category ?? BLOG_CATEGORIES[0],
+                tags: form.tags ?? [],
+                status: form.status ?? "draft",
+                views: form.views ?? 0,
                 updatedAt: serverTimestamp(),
             };
+
             if (isEdit) {
+                // On edit: only update publishedAt if switching to published and no publishedAt yet
+                if (isPublishing && !post!.publishedAt) {
+                    payload.publishedAt = serverTimestamp();
+                }
                 await updateDoc(doc(db, "blog", post!.id), payload);
                 toast.success("Post updated");
             } else {
-                await addDoc(collection(db, "blog"), {
-                    ...payload,
-                    publishedAt: serverTimestamp(),
-                    views: 0,
-                });
+                // On create: always set publishedAt so orderBy works
+                payload.publishedAt = serverTimestamp();
+                await addDoc(collection(db, "blog"), payload);
                 toast.success("Post created");
             }
             onClose();
-        } catch {
+        } catch (err) {
+            console.error("Save error:", err);
             toast.error("Failed to save post");
         } finally {
             setSaving(false);
@@ -281,11 +295,19 @@ const BlogAdmin = () => {
     const unsubRef = useRef<(() => void) | null>(null);
 
     useEffect(() => {
-        const q = query(collection(db, "blog"), orderBy("publishedAt", "desc"));
-        const unsub = onSnapshot(q, (snap) => {
-            setPosts(snap.docs.map((d) => ({ id: d.id, ...d.data() })) as BlogPost[]);
-            setLoading(false);
-        }, () => setLoading(false));
+        // Order by updatedAt so we don't need a composite index for the admin list
+        const q = query(collection(db, "blog"), orderBy("updatedAt", "desc"));
+        const unsub = onSnapshot(
+            q,
+            (snap) => {
+                setPosts(snap.docs.map((d) => ({ id: d.id, ...d.data() })) as BlogPost[]);
+                setLoading(false);
+            },
+            (err) => {
+                console.error("BlogAdmin fetch error:", err);
+                setLoading(false);
+            },
+        );
         unsubRef.current = unsub;
         return () => unsub();
     }, []);
@@ -306,9 +328,18 @@ const BlogAdmin = () => {
     const toggleStatus = async (post: BlogPost) => {
         const newStatus: BlogStatus = post.status === "published" ? "draft" : "published";
         try {
-            await updateDoc(doc(db, "blog", post.id), { status: newStatus, updatedAt: serverTimestamp() });
-            toast.success(`Post ${newStatus === "published" ? "published" : "moved to drafts"}`);
-        } catch {
+            const update: Record<string, unknown> = {
+                status: newStatus,
+                updatedAt: serverTimestamp(),
+            };
+            // Set publishedAt when publishing for the first time
+            if (newStatus === "published" && !post.publishedAt) {
+                update.publishedAt = serverTimestamp();
+            }
+            await updateDoc(doc(db, "blog", post.id), update);
+            toast.success(`Post ${newStatus === "published" ? "✅ published" : "moved to drafts"}`);
+        } catch (err) {
+            console.error("Toggle status error:", err);
             toast.error("Failed to update status");
         }
     };

@@ -43,14 +43,18 @@ const BlogPost = () => {
         if (!slug) return;
         const fetchPost = async () => {
             try {
+                // Single where() to avoid composite index requirement.
+                // Status is verified client-side.
                 const q = query(
                     collection(db, "blog"),
                     where("slug", "==", slug),
-                    where("status", "==", "published"),
                 );
                 const snap = await getDocs(q);
                 if (snap.empty) { setLoading(false); return; }
-                const p = { id: snap.docs[0].id, ...snap.docs[0].data() } as BlogPostType;
+                const matched = snap.docs[0];
+                const p = { id: matched.id, ...matched.data() } as BlogPostType;
+                // Only show post if it's published (client-side guard)
+                if (p.status !== "published") { setLoading(false); return; }
                 setPost(p);
                 // Increment view count (fire-and-forget)
                 updateDoc(doc(db, "blog", p.id), { views: increment(1) }).catch(() => { });

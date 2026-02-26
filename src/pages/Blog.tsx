@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, Tag, ArrowRight, Search, BookOpen } from "lucide-react";
@@ -112,15 +112,25 @@ const Blog = () => {
     const [search, setSearch] = useState("");
 
     useEffect(() => {
+        // Simple query with only an orderBy to avoid composite index requirement.
+        // We filter by status client-side so no Firestore composite index is needed.
         const q = query(
             collection(db, "blog"),
-            where("status", "==", "published"),
             orderBy("publishedAt", "desc"),
         );
-        const unsub = onSnapshot(q, (snap) => {
-            setPosts(snap.docs.map((d) => ({ id: d.id, ...d.data() })) as BlogPost[]);
-            setLoading(false);
-        }, () => setLoading(false));
+        const unsub = onSnapshot(
+            q,
+            (snap) => {
+                const all = snap.docs.map((d) => ({ id: d.id, ...d.data() })) as BlogPost[];
+                // Client-side filter: only show published posts
+                setPosts(all.filter((p) => p.status === "published"));
+                setLoading(false);
+            },
+            (error) => {
+                console.error("❌ Blog fetch error:", error);
+                setLoading(false);
+            },
+        );
         return () => unsub();
     }, []);
 
