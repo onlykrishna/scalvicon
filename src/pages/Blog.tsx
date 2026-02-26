@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { collection, query, orderBy, onSnapshot, where } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, Tag, ArrowRight, Search, BookOpen } from "lucide-react";
@@ -112,18 +112,20 @@ const Blog = () => {
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        // Simple query with only an orderBy to avoid composite index requirement.
-        // We filter by status client-side so no Firestore composite index is needed.
-        const q = query(
-            collection(db, "blog"),
-            orderBy("publishedAt", "desc"),
-        );
+        // Fetch all blog docs with no orderBy/where — zero index requirements.
+        // Filter to published + sort client-side by publishedAt descending.
         const unsub = onSnapshot(
-            q,
+            collection(db, "blog"),
             (snap) => {
                 const all = snap.docs.map((d) => ({ id: d.id, ...d.data() })) as BlogPost[];
-                // Client-side filter: only show published posts
-                setPosts(all.filter((p) => p.status === "published"));
+                const published = all
+                    .filter((p) => p.status === "published")
+                    .sort((a, b) => {
+                        const ta = a.publishedAt?.toMillis?.() ?? 0;
+                        const tb = b.publishedAt?.toMillis?.() ?? 0;
+                        return tb - ta;
+                    });
+                setPosts(published);
                 setLoading(false);
             },
             (error) => {
