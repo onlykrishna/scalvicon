@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Plus, Edit2, Trash2, Eye, EyeOff, FileText,
-    X, Check, Tag, Calendar, BarChart2,
+    X, Check, Tag, Calendar, BarChart2, Loader2
 } from "lucide-react";
 import { format } from "date-fns";
 import type { BlogPost, BlogStatus } from "@/types/blog";
@@ -401,8 +401,50 @@ const BlogAdmin = () => {
                                 <div className="flex items-center gap-2 flex-wrap mb-1">
                                     <h3 className="font-semibold text-sm text-foreground truncate">{post.title}</h3>
                                     <StatusBadge status={post.status} />
+
+                                    {/* SEO Score Badge */}
+                                    {post.seo?.score !== undefined && (
+                                        <span className={cn(
+                                            "rounded-full px-2 py-0.5 text-[10px] font-medium border",
+                                            post.seo.score >= 80 ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" :
+                                                post.seo.score >= 60 ? "bg-amber-500/10 text-amber-500 border-amber-500/20" :
+                                                    "bg-red-500/10 text-red-500 border-red-500/20"
+                                        )}>
+                                            SEO: {post.seo.score}/100
+                                        </span>
+                                    )}
+
+                                    {/* Processing indicator */}
+                                    {post.status === 'published' && !post.seoOptimized && (
+                                        <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                                            <Loader2 className="h-3 w-3 animate-spin" />
+                                            Optimizing SEO...
+                                        </span>
+                                    )}
                                 </div>
                                 <p className="text-xs text-muted-foreground line-clamp-1 mb-2">{post.excerpt}</p>
+
+                                {/* SEO Recommendations */}
+                                {post.seo?.recommendations && post.seo.recommendations.length > 0 && (
+                                    <details className="mb-2">
+                                        <summary className="cursor-pointer text-xs font-medium text-primary hover:underline outline-none list-item">
+                                            View SEO Recommendations ({post.seo.recommendations.length})
+                                        </summary>
+                                        <ul className="mt-1 space-y-1 text-[10px] text-muted-foreground pl-4">
+                                            {post.seo.recommendations.map((rec, idx) => (
+                                                <li key={idx} className="list-disc">{rec}</li>
+                                            ))}
+                                        </ul>
+                                    </details>
+                                )}
+
+                                {/* Focus Keyword */}
+                                {post.seo?.focusKeyword && (
+                                    <p className="mb-2 text-[10px] text-muted-foreground">
+                                        🎯 Focus Keyword: <span className="font-medium text-foreground">{post.seo.focusKeyword}</span>
+                                    </p>
+                                )}
+
                                 <div className="flex items-center gap-3 text-xs text-muted-foreground">
                                     <span className="flex items-center gap-1">
                                         <Tag size={10} /> {post.category}

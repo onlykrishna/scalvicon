@@ -8,7 +8,7 @@ interface SEOProps {
     type?: "website" | "article";
     publishedTime?: string;
     author?: string;
-    keywords?: string;
+    keywords?: string | string[]; // support array as well
 }
 
 const SITE_NAME = "Scalvicon";
@@ -34,13 +34,15 @@ export const SEO = ({
         ? title
         : `${title} | ${SITE_NAME}`;
 
+    const keywordsStr = Array.isArray(keywords) ? keywords.join(", ") : keywords;
+
     return (
         <Helmet>
             {/* Primary */}
             <title>{fullTitle}</title>
             <meta name="title" content={fullTitle} />
             <meta name="description" content={description} />
-            <meta name="keywords" content={keywords} />
+            {keywordsStr && <meta name="keywords" content={keywordsStr} />}
             <meta name="robots" content="index, follow" />
             <meta name="language" content="English" />
             <meta name="author" content={author ?? SITE_NAME} />

@@ -2,6 +2,7 @@ import * as functions from "firebase-functions/v1";
 import * as admin from "firebase-admin";
 import { defineString, defineSecret } from "firebase-functions/params";
 import * as nodemailer from "nodemailer";
+import OpenAI from 'openai';
 
 admin.initializeApp();
 
@@ -11,6 +12,7 @@ admin.initializeApp();
 const EMAIL_USER = defineString("EMAIL_USER", { description: "Gmail address to send from" });
 const EMAIL_PASS = defineSecret("EMAIL_PASS");  // Stored as a Google Cloud Secret
 const ADMIN_EMAIL = defineString("ADMIN_EMAIL", { default: "krishnamaurya2204@gmail.com", description: "Admin recipient email" });
+const OPENAI_API_KEY = defineSecret("OPENAI_API_KEY");
 
 // ─── Transporter factory (called at runtime so params are resolved) ───────────
 const makeTransporter = (pass: string) =>
@@ -102,6 +104,100 @@ export const onNewLead = functions
       console.log(`✅ Email sent for lead ${leadId} (${lead.name})`);
     } catch (err) {
       console.error(`❌ Failed to send email for lead ${leadId}:`, err);
+    }
+
+    return null;
+  });
+
+// ─── SEO Optimization Cloud Function ─────────────────────────────────────────
+export const optimizeBlogSEO = functions
+  .region("us-central1")
+  .runWith({ secrets: ["OPENAI_API_KEY"], timeoutSeconds: 120 })
+  .firestore.document("blog/{postId}")
+  .onUpdate(async (change, context) => {
+    const newData = change.after.data();
+    const oldData = change.before.data();
+
+    // Only run when status changes to 'published' for the first time
+    if (newData.status === 'published' && oldData.status === 'draft' && !newData.seoOptimized) {
+      const postId = context.params.postId;
+      console.log(`🔍 Starting SEO optimization for post: ${postId}`);
+
+      try {
+        const openai = new OpenAI({
+          apiKey: OPENAI_API_KEY.value(),
+        });
+
+        const prompt = `
+You are an SEO expert. Analyze this blog post and provide SEO optimization recommendations.
+
+BLOG TITLE: ${newData.title}
+BLOG CONTENT: ${newData.content.substring(0, 3000)} ${newData.content.length > 3000 ? '...(truncated)' : ''}
+
+Provide a JSON response with:
+1. metaDescription: SEO-optimized meta description (150-160 characters, compelling, includes primary keyword)
+2. keywords: Array of 5-10 relevant keywords/phrases (focus on long-tail keywords Indian users would search)
+3. focusKeyword: Primary keyword this post should rank for
+4. seoScore: Score from 0-100 based on content quality, keyword usage, structure
+5. recommendations: Array of 3-5 specific actionable improvements
+6. suggestedSlug: SEO-friendly URL slug
+7. internalLinks: Array of 2-3 suggested internal page links (use: /blog, /pricing, /services, /contact, /portfolio)
+
+Respond ONLY with valid JSON, no markdown formatting.
+`;
+
+        const completion = await openai.chat.completions.create({
+          model: 'gpt-4o-mini',
+          messages: [{ role: 'user', content: prompt }],
+          temperature: 0.7,
+          max_tokens: 1000,
+        });
+
+        const aiResponse = completion.choices[0].message.content || '{}';
+
+        // Parse AI response
+        let seoData;
+        try {
+          // Remove markdown code blocks if present
+          const cleanedResponse = aiResponse.replace(/```json\n?|\n?```/g, '').trim();
+          seoData = JSON.parse(cleanedResponse);
+        } catch (parseError) {
+          console.error('❌ Failed to parse AI response:', aiResponse);
+          throw new Error('AI returned invalid JSON');
+        }
+
+        // Update Firestore with SEO data
+        await admin.firestore().collection('blog').doc(postId).update({
+          seo: {
+            metaDescription: seoData.metaDescription || '',
+            keywords: seoData.keywords || [],
+            focusKeyword: seoData.focusKeyword || '',
+            score: seoData.seoScore || 0,
+            recommendations: seoData.recommendations || [],
+            suggestedSlug: seoData.suggestedSlug || '',
+            internalLinks: seoData.internalLinks || [],
+            optimizedAt: admin.firestore.FieldValue.serverTimestamp(),
+          },
+          seoOptimized: true,
+          slug: seoData.suggestedSlug || newData.slug, // Use AI-suggested slug if better
+        });
+
+        console.log(`✅ SEO optimization complete for post: ${postId}`);
+        console.log(`📊 SEO Score: ${seoData.seoScore}/100`);
+        console.log(`🎯 Focus Keyword: ${seoData.focusKeyword}`);
+
+      } catch (error) {
+        console.error('❌ SEO optimization failed:', error);
+
+        // Still mark as attempted so we don't retry infinitely
+        await admin.firestore().collection('blog').doc(postId).update({
+          seoOptimized: true,
+          seo: {
+            error: error instanceof Error ? error.message : 'Unknown error',
+            optimizedAt: admin.firestore.FieldValue.serverTimestamp(),
+          },
+        });
+      }
     }
 
     return null;

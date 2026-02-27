@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import ProjectDetailView from "./pages/ProjectDetailView";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
+import { CookieBanner } from "./components/CookieBanner";
 import { RefreshCw } from "lucide-react";
 
 // ── Lazy-loaded admin bundle (recharts + heavy deps split into separate chunk) ─
@@ -90,6 +91,7 @@ const App = () => (
           {/* 404 catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>
   </AuthProvider>

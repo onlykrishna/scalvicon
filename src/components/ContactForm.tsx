@@ -46,6 +46,18 @@ const ContactForm = () => {
                 status: "new",
                 source: "contact_form",
             });
+
+            // Track conversion in Google Analytics
+            // @ts-expect-error - gtag is defined in index.html
+            if (typeof gtag !== 'undefined') {
+                // @ts-expect-error - gtag is defined in index.html
+                gtag('event', 'generate_lead', {
+                    event_category: 'contact',
+                    event_label: data.businessType,
+                    value: 1
+                });
+            }
+
             toast.success("Thanks! We'll reach out within 24 hours 🚀");
             reset();
         } catch (err) {

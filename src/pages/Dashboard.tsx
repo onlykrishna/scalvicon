@@ -172,9 +172,9 @@ export default function Dashboard() {
                             <div className="bg-primary/5 border border-primary/20 rounded-card p-6">
                                 <h3 className="text-xs font-bold text-primary uppercase tracking-widest mb-3">Next Step</h3>
                                 <p className="text-sm text-white/80 font-medium">Ready to discuss a new idea? Let's turn it into reality.</p>
-                                <button className="mt-4 text-xs font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all">
+                                <a href="/#contact" className="mt-4 text-xs font-bold text-primary flex items-center w-fit gap-1 hover:gap-2 transition-all">
                                     Start New Inquiry <ChevronRight size={14} />
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

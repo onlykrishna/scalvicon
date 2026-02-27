@@ -67,6 +67,18 @@ const BlogPost = () => {
         fetchPost();
     }, [slug]);
 
+    useEffect(() => {
+        // @ts-expect-error - gtag is defined in index.html
+        if (post && typeof gtag !== 'undefined') {
+            // @ts-expect-error - gtag is defined in index.html
+            gtag('event', 'page_view', {
+                page_title: post.title,
+                page_location: window.location.href,
+                page_path: `/blog/${post.slug}`
+            });
+        }
+    }, [post]);
+
     const handleShare = async () => {
         const url = window.location.href;
         if (navigator.share) {
@@ -112,13 +124,13 @@ const BlogPost = () => {
         <div className="min-h-screen bg-background text-foreground">
             <SEO
                 title={post.title}
-                description={post.excerpt}
+                description={post.seo?.metaDescription || post.excerpt}
                 image={post.coverImage}
                 url={`https://scalvicon-9bf2f.web.app/blog/${post.slug}`}
                 type="article"
                 publishedTime={post.publishedAt ? post.publishedAt.toDate().toISOString() : undefined}
                 author={post.author.name}
-                keywords={post.tags?.join(", ")}
+                keywords={post.seo?.keywords || post.tags}
             />
             <Navbar />
 

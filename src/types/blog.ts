@@ -19,7 +19,19 @@ export interface BlogPost {
     updatedAt?: Timestamp;
     views: number;
     status: BlogStatus;
+    seoOptimized?: boolean;
+    seo?: {
+        metaDescription: string;
+        keywords: string[];
+        focusKeyword: string;
+        score: number;
+        recommendations: string[];
+        suggestedSlug: string;
+        internalLinks: string[];
+        optimizedAt: Timestamp;
+    };
 }
+
 
 export const BLOG_CATEGORIES = [
     "Web Development",
