@@ -59,7 +59,7 @@ const LeadDetailDrawer = ({ lead, isOpen, onClose }: Props) => {
     const handleUpdateStatus = async (status: LeadStatus, eventDescription: string, note?: string) => {
         setSaving(true);
         try {
-            const updateData: any = {
+            const updateData: Record<string, unknown> = {
                 status,
                 lastUpdated: Timestamp.now(),
                 timeline: arrayUnion({
@@ -372,7 +372,7 @@ const LeadDetailDrawer = ({ lead, isOpen, onClose }: Props) => {
     );
 };
 
-const DetailItem = ({ icon: Icon, label, value, color }: any) => (
+const DetailItem = ({ icon: Icon, label, value, color }: { icon: React.ElementType, label: string, value: string, color: string }) => (
     <div className="space-y-1">
         <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
             <Icon size={12} className={color} /> {label}
@@ -381,7 +381,7 @@ const DetailItem = ({ icon: Icon, label, value, color }: any) => (
     </div>
 );
 
-const ActionButton = ({ icon: Icon, label, color, bg, border, onClick }: any) => (
+const ActionButton = ({ icon: Icon, label, color, bg, border, onClick }: { icon: React.ElementType, label: string, color: string, bg: string, border: string, onClick: () => void }) => (
     <button
         onClick={onClick}
         className={cn(

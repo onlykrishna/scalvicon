@@ -232,7 +232,7 @@ const DashboardView = ({ leads }: Props) => {
                     <motion.div
                         key={s.id}
                         whileHover={{ y: -4 }}
-                        onClick={() => setActiveSection(activeSection === s.id ? "total" : s.id as any)}
+                        onClick={() => setActiveSection(activeSection === s.id ? "total" : s.id as DashboardSection)}
                         className={cn(
                             "bg-[#162030] border border-[#1c2b3a] rounded-2xl p-4 cursor-pointer transition-all duration-300 relative group overflow-hidden",
                             activeSection === s.id ? "border-primary shadow-[0_0_20px_rgba(0,229,160,0.15)] ring-1 ring-primary/50" : "hover:border-primary/40"
@@ -400,7 +400,7 @@ const DashboardView = ({ leads }: Props) => {
 
 // ─── Sub-Components ───────────────────────────────────────────────────────
 
-const ChartCard = ({ title, children }: any) => (
+const ChartCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="space-y-4">
         <h4 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] text-center border-b border-[#1c2b3a] pb-2">
             {title}

@@ -107,7 +107,7 @@ const ProjectsView = ({ leads }: Props) => {
                     <motion.div
                         key={s.id}
                         whileHover={{ y: -4 }}
-                        onClick={() => setActivePhase(s.id as any)}
+                        onClick={() => setActivePhase(s.id as ProjectPhase)}
                         className={cn(
                             "bg-[#162030] border border-[#1c2b3a] rounded-2xl p-4 cursor-pointer transition-all duration-300 relative group overflow-hidden",
                             activePhase === s.id ? "border-primary shadow-[0_0_20px_rgba(0,229,160,0.15)] ring-1 ring-primary/50" : "hover:border-primary/40"
@@ -692,7 +692,7 @@ const ProjectDetailDrawer = ({ project, isOpen, onClose }: { project: Project, i
 
     const toggleMilestoneStatus = async (id: string, currentStatus: string) => {
         const nextStatus = currentStatus === 'pending' ? 'in-progress' : currentStatus === 'in-progress' ? 'done' : 'pending';
-        const updatedTracker = project.techTracker.map(m => m.id === id ? { ...m, status: nextStatus as any } : m);
+        const updatedTracker = project.techTracker.map(m => m.id === id ? { ...m, status: nextStatus as TechProgressItem['status'] } : m);
 
         try {
             const projectRef = doc(db, "projects", project.id);
@@ -1018,7 +1018,7 @@ const ProjectDetailDrawer = ({ project, isOpen, onClose }: { project: Project, i
 const BugTracker = ({ project }: { project: Project }) => {
     const [adding, setAdding] = useState(false);
     const [saving, setSaving] = useState(false);
-    const [newBug, setNewBug] = useState({ title: "", description: "", severity: "low" as any });
+    const [newBug, setNewBug] = useState({ title: "", description: "", severity: "low" as Bug['severity'] });
 
     const handleAddBug = async () => {
         if (!newBug.title) return;
@@ -1048,7 +1048,7 @@ const BugTracker = ({ project }: { project: Project }) => {
     };
 
     const resolveBug = async (id: string) => {
-        const updatedBugs = project.bugs.map(b => b.id === id ? { ...b, status: "resolved" as any } : b);
+        const updatedBugs = project.bugs.map(b => b.id === id ? { ...b, status: "resolved" as Bug['status'] } : b);
         try {
             const projectRef = doc(db, "projects", project.id);
             await updateDoc(projectRef, {
@@ -1092,7 +1092,7 @@ const BugTracker = ({ project }: { project: Project }) => {
                     <div className="flex gap-4">
                         <select
                             value={newBug.severity}
-                            onChange={e => setNewBug({ ...newBug, severity: e.target.value as any })}
+                            onChange={e => setNewBug({ ...newBug, severity: e.target.value as Bug['severity'] })}
                             className="bg-[#0f1923] border border-[#1c2b3a] rounded-xl py-2 px-4 text-xs text-white focus:outline-none"
                         >
                             <option value="low">Low</option>

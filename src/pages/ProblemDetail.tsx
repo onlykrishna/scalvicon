@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ElementType> = {
     AlertTriangle,
     TrendingDown,
     Clock,

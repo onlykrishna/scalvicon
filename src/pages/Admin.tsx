@@ -42,7 +42,7 @@ import { fadeUp } from "@/lib/animations";
 // ─── Tab definition ────────────────────────────────────────────────────────────
 type Tab = "dashboard" | "leads" | "projects" | "analytics" | "activity" | "blog" | "settings";
 
-const sidebarItems: { id: Tab; label: string; icon: any }[] = [
+const sidebarItems: { id: Tab; label: string; icon: React.ElementType }[] = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "leads", label: "Leads", icon: Inbox },
     { id: "projects", label: "Projects", icon: Briefcase },
