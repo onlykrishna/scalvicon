@@ -42,5 +42,16 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // ── Chatbot ───────────────────────────────────────────────────────────────
+    match /chat_conversations/{docId} {
+      allow create, read, update: if true; // Public access for chatbot
+      allow delete: if isAdmin();
+    }
+
+    match /chat_leads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
   }
 }

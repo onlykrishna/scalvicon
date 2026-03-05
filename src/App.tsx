@@ -29,6 +29,7 @@ const Terms = lazy(() => import("./pages/company/Terms"));
 const Privacy = lazy(() => import("./pages/company/Privacy"));
 
 import { BottomCTAPopup } from "./components/BottomCTAPopup";
+import ChatWidget from "./features/chatbot";
 
 const AdminFallback = () => (
   <div className="flex h-screen items-center justify-center bg-background gap-3">
@@ -113,6 +114,7 @@ const App = () => (
         </Routes>
         <CookieBanner />
         <BottomCTAPopup />
+        <ChatWidget />
       </BrowserRouter>
     </TooltipProvider>
   </AuthProvider>
