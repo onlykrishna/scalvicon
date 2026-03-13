@@ -12,13 +12,13 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Scalvicon";
-const DEFAULT_TITLE = "Scalvicon — Professional Website Development for Indian SMEs";
+const DEFAULT_TITLE = "Scalvicon — Premium Web Solutions for SMEs & Emerging Brands";
 const DEFAULT_DESC =
-    "Get a stunning, SEO-optimized website for your Indian business. Starting at ₹14,999. Fast delivery, real results — Restaurants, Clinics, Salons, Retail & more.";
+    "Premium web development and digital solutions tailored for SMEs and emerging brands. Scalvicon builds high-performance, SEO-optimized websites that drive growth.";
 const DEFAULT_IMAGE = "https://scalvicon-9bf2f.web.app/og-image.png";
 const SITE_URL = "https://scalvicon-9bf2f.web.app";
 const DEFAULT_KEYWORDS =
-    "website development India, affordable website, Indian SME website, web design India, SEO India, Scalvicon";
+    "premium web solutions, Scalvicon, web development for SMEs, emerging brand digital strategy, custom business websites India, high-performance web design";
 
 export const SEO = ({
     title = DEFAULT_TITLE,
@@ -68,6 +68,42 @@ export const SEO = ({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={image} />
+
+            {/* JSON-LD Schema */}
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": SITE_NAME,
+                    "url": SITE_URL,
+                    "logo": image,
+                    "description": DEFAULT_DESC,
+                    "sameAs": [
+                        "https://twitter.com/scalvicon",
+                        "https://www.linkedin.com/company/scalvicon"
+                    ],
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+91-XXXXXXXXXX",
+                        "contactType": "customer service",
+                        "areaServed": "IN",
+                        "availableLanguage": "en"
+                    }
+                })}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": SITE_NAME,
+                    "url": SITE_URL,
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": `${SITE_URL}/search?q={search_term_string}`,
+                        "query-input": "required name=search_term_string"
+                    }
+                })}
+            </script>
 
             {/* Canonical */}
             <link rel="canonical" href={url} />

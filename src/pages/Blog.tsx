@@ -156,10 +156,10 @@ const Blog = () => {
     return (
         <div className="min-h-screen bg-background text-foreground">
             <SEO
-                title="Blog — Web Development & SEO Tips for Indian Businesses"
-                description="Expert insights on web development, SEO, and digital marketing for Indian SMEs. Grow your business online with Scalvicon."
+                title="Scalvicon Blog | Growth Insights for SMEs & Emerging Brands"
+                description="Expert insights on web development, SEO, and digital growth strategies for SMEs and emerging brands. Scale your business with Scalvicon."
                 url="https://scalvicon-9bf2f.web.app/blog"
-                keywords="web development tips India, SEO guide India, Indian SME digital marketing, website design blog"
+                keywords={["SME growth tips", "emerging brand strategy", "premium web development blog", "SEO for business", "Scalvicon"]}
             />
             <Navbar />
 

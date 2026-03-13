@@ -8,17 +8,18 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
-import Dashboard from "./pages/Dashboard";
-import ProjectDetailView from "./pages/ProjectDetailView";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import { CookieBanner } from "./components/CookieBanner";
 import { RefreshCw } from "lucide-react";
+import { DeferredFeature } from "./components/DeferredFeature";
 
 // ── Lazy-loaded admin bundle (recharts + heavy deps split into separate chunk) ─
 const Admin = lazy(() => import("./pages/Admin"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ProjectDetailView = lazy(() => import("./pages/ProjectDetailView"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail").then(module => ({ default: module.ServiceDetailPage })));
 const ProblemDetail = lazy(() => import("./pages/ProblemDetail").then(module => ({ default: module.ProblemDetailPage })));
 const ProcessDetail = lazy(() => import("./pages/ProcessDetail").then(module => ({ default: module.ProcessDetailPage })));
@@ -56,7 +57,9 @@ const App = () => (
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <Suspense fallback={<AdminFallback />}>
+                  <Dashboard />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -64,7 +67,9 @@ const App = () => (
             path="/portal/project/:id"
             element={
               <ProtectedRoute>
-                <ProjectDetailView />
+                <Suspense fallback={<AdminFallback />}>
+                  <ProjectDetailView />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -112,9 +117,15 @@ const App = () => (
           {/* 404 catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <CookieBanner />
-        <BottomCTAPopup />
-        <ChatWidget />
+        <DeferredFeature delay={2000}>
+          <CookieBanner />
+        </DeferredFeature>
+        <DeferredFeature delay={3000}>
+          <BottomCTAPopup />
+        </DeferredFeature>
+        <DeferredFeature delay={4000}>
+          <ChatWidget />
+        </DeferredFeature>
       </BrowserRouter>
     </TooltipProvider>
   </AuthProvider>

@@ -4,47 +4,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scalvicon — Premium Web Design for Indian SMEs</title>
+  <title>Scalvicon — Premium Web Solutions for SMEs & Emerging Brands</title>
   <meta name="description"
-    content="Scalvicon builds stunning, high-performance websites for Indian small businesses. Restaurants, clinics, salons & more. Results you can measure." />
+    content="Premium web development and digital solutions tailored for SMEs and emerging brands. Scalvicon builds high-performance, SEO-optimized websites that drive growth." />
   <meta name="author" content="Scalvicon" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Scalvicon — Premium Web Design for Indian SMEs" />
+  <meta property="og:title" content="Scalvicon — Premium Web Solutions for SMEs & Emerging Brands" />
   <meta property="og:description"
-    content="Scalvicon builds stunning, high-performance websites for Indian small businesses." />
+    content="Premium web development and digital solutions tailored for SMEs and emerging brands. Scalvicon builds high-performance, SEO-optimized websites that drive growth." />
   <meta property="og:image" content="/og-image.png" />
   <meta property="og:url" content="https://scalvicon.in" />
   <meta property="og:site_name" content="Scalvicon" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scalvicon — Premium Web Design for Indian SMEs" />
+  <meta name="twitter:title" content="Scalvicon — Premium Web Solutions for SMEs & Emerging Brands" />
   <meta name="twitter:description"
-    content="Scalvicon builds stunning, high-performance websites for Indian small businesses." />
+    content="Premium web development and digital solutions tailored for SMEs and emerging brands. Scalvicon builds high-performance, SEO-optimized websites that drive growth." />
   <meta name="twitter:image" content="/og-image.png" />
 
-  <!-- Google Fonts: preconnect then load -->
+  <!-- Speed Optimization: Preconnect to critical domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://scalvicon-9bf2f.firebaseapp.com" />
+
+  <!-- Preload Critical Fonts to prevent FOUT/LCP delay -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" as="style" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" />
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S10FJPH9Q9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-S10FJPH9Q9');
-  </script>
 </head>
 
 <body>
-  <div id="root"></div>
+  <main id="root"></main>
   <script type="module" src="/src/main.tsx"></script>
+
+  <!-- Google Analytics: Loading non-critical scripts at bottom to prioritize LCP -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S10FJPH9Q9"></script>
+  <script>
+    window.onload = function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-S10FJPH9Q9');
+    }
+  </script>
 </body>
 
 </html>

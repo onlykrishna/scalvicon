@@ -28,9 +28,9 @@ const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-display font-semibold text-foreground text-sm mb-4">
+            <h3 className="font-display font-semibold text-foreground text-sm mb-4">
               Navigate
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {[
                 { label: "About Us", target: "pain-points" },
@@ -54,9 +54,9 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-display font-semibold text-foreground text-sm mb-4">
+            <h3 className="font-display font-semibold text-foreground text-sm mb-4">
               Company
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link
@@ -95,9 +95,9 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-semibold text-foreground text-sm mb-4">
+            <h3 className="font-display font-semibold text-foreground text-sm mb-4">
               Contact
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li>
                 <a

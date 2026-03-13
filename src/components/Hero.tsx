@@ -26,7 +26,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden dot-grid-bg">
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[120px] animate-drift" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent-blue/[0.03] rounded-full blur-[100px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40vw] font-display font-extrabold text-foreground/[0.02] select-none pointer-events-none">S</div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40vw] font-display font-extrabold text-foreground/[0.02] select-none pointer-events-none z-0" style={{ containIntrinsicSize: '40vw 40vw', contentVisibility: 'auto' }}>S</div>
 
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid lg:grid-cols-[55%_45%] gap-12 items-center">

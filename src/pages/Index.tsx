@@ -13,9 +13,15 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollToTop from "@/components/ScrollToTop";
+import { SEO } from "@/components/SEO";
 
 const Index = () => (
   <div className="min-h-screen bg-background text-foreground">
+    <SEO 
+      title="Premium Web Solutions for SMEs & Emerging Brands"
+      description="Scalvicon delivers high-performance, premium web solutions designed to scale your business. Leading SME web agency in India."
+      keywords={["premium web solutions", "SME growth", "business websites", "Scalvicon", "web agency India"]}
+    />
     <Navbar />
     <Hero />
     <MarqueeTicker />

@@ -80,9 +80,10 @@ export const ProblemDetailPage = () => {
     return (
         <div className="min-h-screen bg-background flex flex-col">
             <SEO
-                title={`${problem.title} — How to Fix | Scalvicon`}
+                title={`${problem.title} — How We Fix It for SMEs | Scalvicon`}
                 description={problem.subtitle}
                 url={`https://scalvicon-9bf2f.web.app/problems/${problem.slug}`}
+                keywords={[problem.title, 'business problem solution', 'SME growth strategy', 'Scalvicon solutions']}
             />
 
             <Navbar />

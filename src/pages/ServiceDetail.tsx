@@ -61,10 +61,10 @@ export const ServiceDetailPage = () => {
     return (
         <div className="min-h-screen bg-background flex flex-col">
             <SEO
-                title={`${service.title} | Scalvicon`}
+                title={`${service.title} | Premium SME Web Solutions | Scalvicon`}
                 description={service.subtitle}
                 url={`https://scalvicon-9bf2f.web.app/services/${service.slug}`}
-                keywords={[service.title, 'web development', 'India', 'SME', 'website']}
+                keywords={[service.title, 'premium web solutions', 'SME web development', 'India', 'Scalvicon']}
             />
 
             <Navbar />

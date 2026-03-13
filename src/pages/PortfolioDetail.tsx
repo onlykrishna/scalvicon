@@ -73,9 +73,10 @@ export const PortfolioDetailPage = () => {
     return (
         <div className="min-h-screen bg-background flex flex-col">
             <SEO
-                title={`Case Study: ${project.title} | Scalvicon`}
+                title={`SME Growth Case Study: ${project.title} | Scalvicon`}
                 description={project.description}
                 url={`https://scalvicon-9bf2f.web.app/portfolio/${project.slug}`}
+                keywords={[project.title, 'SME success story', 'premium web solutions', 'Scalvicon portfolio']}
             />
 
             <Navbar />

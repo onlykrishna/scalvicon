@@ -131,7 +131,7 @@ const ContactForm = () => {
 
                             {/* Business Type */}
                             <div className="space-y-1.5">
-                                <label className="text-sm text-white/60 font-medium">
+                                <label htmlFor="businessType" className="text-sm text-white/60 font-medium">
                                     Business Type
                                 </label>
                                 <Controller
@@ -141,6 +141,7 @@ const ContactForm = () => {
                                     render={({ field }) => (
                                         <select
                                             {...field}
+                                            id="businessType"
                                             className={cn(
                                                 inputClass,
                                                 "appearance-none",
