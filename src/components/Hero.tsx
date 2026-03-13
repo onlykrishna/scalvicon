@@ -30,13 +30,13 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid lg:grid-cols-[55%_45%] gap-12 items-center">
-          <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-6">
+          <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-5">
             <motion.div variants={fadeUp}>
               <span className="inline-block border border-primary/30 text-primary text-xs font-mono uppercase tracking-widest px-4 py-1.5 rounded-full">
                 India's #1 SME Web Agency
               </span>
             </motion.div>
-            <motion.h1 variants={fadeUp} className="font-display font-extrabold leading-[1.05] text-foreground" style={{ fontSize: "clamp(40px, 6vw, 80px)" }}>
+            <motion.h1 variants={fadeUp} className="font-display font-extrabold leading-[1.05] text-foreground" style={{ fontSize: "clamp(32px, 5vw, 64px)" }}>
               We Build Websites That <span className="text-gradient-green">Actually Grow</span> Your Business
             </motion.h1>
             <motion.p variants={fadeUp} className="text-muted-foreground text-base md:text-lg max-w-lg">

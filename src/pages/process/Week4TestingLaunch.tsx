@@ -132,48 +132,50 @@ const Week4TestingLaunch = () => {
 
             <main className="pt-24 pb-20">
                 {/* 1. Process Stepper */}
-                <div className="container mx-auto px-4 mb-16 overflow-hidden">
+                <div className="container mx-auto px-4 mb-8 overflow-hidden">
                     <div className="flex items-center justify-between relative max-w-4xl mx-auto overflow-x-auto pb-4 scrollbar-hide">
                         <div className="absolute top-5 left-0 right-0 h-[2px] bg-white/10 -z-10 hidden md:block" />
-                        {steps.map((step, idx) => (
-                            <Link 
-                                key={step.number} 
-                                to={`/process/${step.slug}`}
-                                className="flex flex-col items-center min-w-[100px] group transition-all"
-                            >
-                                <div className={`
-                                    w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-black mb-2
-                                    ${step.status === 'active' ? 'bg-[#f97316] shadow-[0_0_20px_rgba(249,115,22,0.5)] scale-110' : 
-                                      step.status === 'completed' ? 'bg-[#00e5a0]' : 'bg-white/10 text-white/40 group-hover:bg-white/20'}
-                                    transition-all duration-300
-                                `}>
-                                    {step.status === 'completed' ? <Check className="w-5 h-5" /> : step.number}
-                                </div>
-                                <span className={`text-[10px] uppercase tracking-widest font-bold font-display ${step.status === 'active' ? 'text-white' : 'text-white/40'}`}>
-                                    Step {step.number}
-                                </span>
-                            </Link>
-                        ))}
+                        <div className="flex items-center justify-between min-w-[600px] md:min-w-0 w-full">
+                            {steps.map((step, idx) => (
+                                <Link 
+                                    key={step.number} 
+                                    to={`/process/${step.slug}`}
+                                    className="flex flex-col items-center min-w-[100px] group transition-all"
+                                >
+                                    <div className={`
+                                        w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-black mb-2
+                                        ${step.status === 'active' ? 'bg-[#f97316] shadow-[0_0_20px_rgba(249,115,22,0.5)] scale-110' : 
+                                        step.status === 'completed' ? 'bg-[#00e5a0]' : 'bg-white/10 text-white/40 group-hover:bg-white/20'}
+                                        transition-all duration-300
+                                    `}>
+                                        {step.status === 'completed' ? <Check className="w-5 h-5" /> : step.number}
+                                    </div>
+                                    <span className={`text-[10px] uppercase tracking-widest font-bold font-display ${step.status === 'active' ? 'text-white' : 'text-white/40'}`}>
+                                        Step {step.number}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
                 {/* 2. Hero Section */}
-                <section className="container mx-auto px-4 mb-20 text-center">
+                <section className="container mx-auto px-4 mb-16 md:mb-20 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-[#f97316] font-mono text-sm tracking-[0.2em] font-bold block mb-4 uppercase">
+                        <span className="text-[#f97316] font-mono text-xs tracking-[0.2em] font-bold block mb-4 uppercase">
                             WEEK 4
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-display font-black text-white mb-6 tracking-tight leading-tight">
+                        <h1 className="text-4xl md:text-7xl font-display font-black text-white mb-6 tracking-tight leading-tight">
                             Testing & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f97316] to-[#f59e0b]">Launch</span>
                         </h1>
-                        <p className="text-xl text-[#94a3b8] mb-8 font-light max-w-2xl mx-auto italic">
+                        <p className="text-lg md:text-xl text-[#94a3b8] mb-8 font-light max-w-2xl mx-auto italic">
                             "We go live only when it's perfect."
                         </p>
-                        <div className="max-w-3xl mx-auto text-lg leading-relaxed mb-10 text-[#94a3b8]">
+                        <div className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 text-[#94a3b8]">
                             Week 4 is the most satisfying part — but also the most rigorous. 
                             Before anything goes live, we run your website through our full 47-point 
                             launch checklist: cross-browser testing, mobile QA, speed audits, 
@@ -188,9 +190,9 @@ const Week4TestingLaunch = () => {
                 </section>
 
                 {/* 3. What Happens This Week - Timeline */}
-                <section className="container mx-auto px-4 max-w-4xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">What Happens This Week</h2>
-                    <div className="space-y-8 relative">
+                <section className="container mx-auto px-4 max-w-4xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 text-center">What Happens This Week</h2>
+                    <div className="space-y-6 md:space-y-8 relative">
                         <div className="absolute left-[31px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-[#f97316]/50 to-transparent hidden md:block" />
                         {timelineSteps.map((step, idx) => (
                             <motion.div 
@@ -199,15 +201,15 @@ const Week4TestingLaunch = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.2 }}
-                                className="group bg-[#111820] rounded-2xl border-l-4 border-[#f97316] p-8 shadow-card hover:shadow-card-hover transition-all border border-white/5"
+                                className="group bg-[#111820] rounded-2xl border-l-4 border-[#f97316] p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all border border-white/5"
                             >
-                                <div className="flex items-start gap-6">
-                                    <div className="w-16 h-16 shrink-0 rounded-xl bg-[#f97316]/10 flex items-center justify-center group-hover:bg-[#f97316]/20 transition-colors">
+                                <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 rounded-xl bg-[#f97316]/10 flex items-center justify-center group-hover:bg-[#f97316]/20 transition-colors">
                                         {step.icon}
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-display font-bold text-white mb-2">{step.title}</h3>
-                                        <p className="text-[#94a3b8] leading-relaxed">{step.description}</p>
+                                        <h3 className="text-lg md:text-xl font-display font-bold text-white mb-2">{step.title}</h3>
+                                        <p className="text-[#94a3b8] text-sm md:text-base leading-relaxed">{step.description}</p>
                                     </div>
                                 </div>
                             </motion.div>
@@ -216,32 +218,32 @@ const Week4TestingLaunch = () => {
                 </section>
 
                 {/* 4. Our 47-Point Launch Checklist */}
-                <section className="container mx-auto px-4 max-w-5xl mb-32">
-                    <div className="bg-[#111820] rounded-3xl p-10 border border-white/5 relative overflow-hidden group">
+                <section className="container mx-auto px-4 max-w-5xl mb-24 md:mb-32">
+                    <div className="bg-[#111820] rounded-3xl p-6 md:p-10 border border-white/5 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#f97316]/5 blur-3xl rounded-full -mr-32 -mt-32" />
-                        <h3 className="text-2xl font-display font-bold text-white mb-12 relative z-10 text-center">Our 47-Point Launch Checklist</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-12 relative z-10">
+                        <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-8 md:mb-12 relative z-10 text-center">Our 47-Point Launch Checklist</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-6 gap-x-12 relative z-10">
                             {checklistItems.map((item, idx) => (
                                 <div key={idx} className="flex items-center gap-3">
                                     <div className="w-5 h-5 shrink-0 rounded-full bg-[#00e5a0]/10 flex items-center justify-center">
                                         <Check className="w-3 h-3 text-[#00e5a0]" />
                                     </div>
-                                    <span className="text-white font-medium text-sm flex items-center gap-2">
+                                    <span className="text-white font-medium text-xs md:text-sm flex items-center gap-2">
                                         {item}
                                     </span>
                                 </div>
                             ))}
                         </div>
-                        <p className="mt-12 text-center text-sm font-display font-bold text-[#00e5a0] tracking-widest relative z-10 uppercase">
+                        <p className="mt-8 md:mt-12 text-center text-xs md:text-sm font-display font-bold text-[#00e5a0] tracking-widest relative z-10 uppercase">
                             "We don't launch until every box is checked."
                         </p>
                     </div>
                 </section>
 
                 {/* 5. What You Get on Launch Day */}
-                <section className="container mx-auto px-4 max-w-6xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">What You Get on Launch Day</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <section className="container mx-auto px-4 max-w-6xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 text-center">What You Get on Launch Day</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         {launchDeliverables.map((item, idx) => (
                             <motion.div 
                                 key={idx}
@@ -249,19 +251,19 @@ const Week4TestingLaunch = () => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-[#111820] p-8 rounded-2xl border border-white/5 hover:border-[#f97316]/30 transition-all flex flex-col items-center text-center"
+                                className="bg-[#111820] p-6 md:p-8 rounded-2xl border border-white/5 hover:border-[#f97316]/30 transition-all flex flex-col items-center text-center"
                             >
-                                <div className="w-12 h-12 bg-[#f97316]/10 rounded-xl flex items-center justify-center mb-6 text-[#f97316]">
+                                <div className="w-10 h-10 md:w-12 md:h-12 bg-[#f97316]/10 rounded-xl flex items-center justify-center mb-6 text-[#f97316]">
                                     {item.icon}
                                 </div>
-                                <h3 className="text-xl font-display font-bold text-white mb-2">{item.title}</h3>
-                                <p className="text-[#94a3b8] text-sm leading-relaxed">{item.desc}</p>
+                                <h3 className="text-lg md:text-xl font-display font-bold text-white mb-2">{item.title}</h3>
+                                <p className="text-[#94a3b8] text-xs md:text-sm leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                         {/* Summary Box */}
-                        <div className="md:col-span-2 lg:col-span-1 bg-[#f97316]/5 border border-[#f97316]/20 p-8 rounded-2xl flex flex-col justify-center text-center">
-                            <h3 className="text-xl font-display font-bold text-white mb-4">Total Peace of Mind</h3>
-                            <p className="text-sm text-[#94a3b8] leading-relaxed">
+                        <div className="sm:col-span-2 lg:col-span-1 bg-[#f97316]/5 border border-[#f97316]/20 p-6 md:p-8 rounded-2xl flex flex-col justify-center text-center">
+                            <h3 className="text-lg md:text-xl font-display font-bold text-white mb-4">Total Peace of Mind</h3>
+                            <p className="text-[10px] md:text-sm text-[#94a3b8] leading-relaxed">
                                 From your domain setup to your personalized training video, we handle every detail so you can focus on running your business.
                             </p>
                         </div>
@@ -269,8 +271,8 @@ const Week4TestingLaunch = () => {
                 </section>
 
                 {/* 6. FAQ Section */}
-                <section className="container mx-auto px-4 max-w-4xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">Testing & Launch — FAQ</h2>
+                <section className="container mx-auto px-4 max-w-4xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 text-center">Testing & Launch — FAQ</h2>
                     <Accordion type="single" collapsible className="space-y-4">
                         {faqItems.map((item, idx) => (
                             <AccordionItem 
@@ -278,10 +280,10 @@ const Week4TestingLaunch = () => {
                                 value={`item-${idx}`}
                                 className="border border-white/5 bg-[#111820] rounded-xl px-2 overflow-hidden"
                             >
-                                <AccordionTrigger className="hover:no-underline text-white font-bold py-6 text-left hover:text-[#f97316] transition-colors">
+                                <AccordionTrigger className="hover:no-underline text-white font-bold py-6 text-left hover:text-[#f97316] transition-colors text-sm md:text-base">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-[#94a3b8] pb-6 leading-relaxed">
+                                <AccordionContent className="text-[#94a3b8] pb-6 leading-relaxed text-xs md:text-sm">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>
@@ -290,13 +292,13 @@ const Week4TestingLaunch = () => {
                 </section>
 
                 {/* 7. CTA + Bottom Nav */}
-                <section className="container mx-auto px-4 max-w-4xl mb-32">
-                    <div className="relative rounded-3xl p-12 overflow-hidden border border-white/10 group bg-card">
+                <section className="container mx-auto px-4 max-w-4xl mb-24 md:mb-32">
+                    <div className="relative rounded-3xl p-8 md:p-12 overflow-hidden border border-white/10 group bg-card">
                         <div className="relative z-10 text-center">
-                            <h2 className="text-3xl font-display font-extrabold text-white mb-4">Ready to start your project?</h2>
-                            <p className="text-[#94a3b8] mb-8 text-lg">Free 30-minute strategy call. No commitment.</p>
+                            <h2 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-4">Ready to start your project?</h2>
+                            <p className="text-[#94a3b8] mb-8 text-base md:text-lg">Free 30-minute strategy call. No commitment.</p>
                             <Link to="/#contact">
-                                <Button size="lg" className="bg-[#00e5a0] hover:bg-[#00c58a] text-black font-bold h-14 px-10 text-lg rounded-xl shadow-[0_0_30px_rgba(0,229,160,0.3)] hover:scale-105 transition-all">
+                                <Button size="lg" className="w-full sm:w-auto bg-[#00e5a0] hover:bg-[#00c58a] text-black font-bold h-14 px-10 text-base md:text-lg rounded-xl shadow-[0_0_30px_rgba(0,229,160,0.3)] hover:scale-105 transition-all">
                                     Book Your Free Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
                             </Link>

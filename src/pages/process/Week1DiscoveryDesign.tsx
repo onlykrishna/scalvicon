@@ -127,47 +127,49 @@ const Week1DiscoveryDesign = () => {
 
             <main className="pt-24 pb-20">
                 {/* 1. Process Breadcrumb Nav */}
-                <div className="container mx-auto px-4 mb-16 overflow-hidden">
+                <div className="container mx-auto px-4 mb-8 overflow-hidden">
                     <div className="flex items-center justify-between relative max-w-4xl mx-auto overflow-x-auto pb-4 scrollbar-hide">
                         <div className="absolute top-5 left-0 right-0 h-[2px] bg-white/10 -z-10 hidden md:block" />
-                        {steps.map((step, idx) => (
-                            <Link 
-                                key={step.number} 
-                                to={`/process/${step.slug}`}
-                                className="flex flex-col items-center min-w-[100px] group transition-all"
-                            >
-                                <div className={`
-                                    w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-black mb-2
-                                    ${step.status === 'active' ? step.color + ' shadow-[0_0_20px_rgba(0,229,160,0.5)] scale-110' : 'bg-white/10 text-white/40 group-hover:bg-white/20'}
-                                    transition-all duration-300
-                                `}>
-                                    {step.number}
-                                </div>
-                                <span className={`text-[10px] uppercase tracking-widest font-bold font-display ${step.status === 'active' ? 'text-white' : 'text-white/40'}`}>
-                                    Step {step.number}
-                                </span>
-                            </Link>
-                        ))}
+                        <div className="flex items-center justify-between min-w-[600px] md:min-w-0 w-full">
+                            {steps.map((step, idx) => (
+                                <Link 
+                                    key={step.number} 
+                                    to={`/process/${step.slug}`}
+                                    className="flex flex-col items-center min-w-[100px] group transition-all"
+                                >
+                                    <div className={`
+                                        w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-black mb-2
+                                        ${step.status === 'active' ? step.color + ' shadow-[0_0_20px_rgba(0,229,160,0.5)] scale-110' : 'bg-white/10 text-white/40 group-hover:bg-white/20'}
+                                        transition-all duration-300
+                                    `}>
+                                        {step.number}
+                                    </div>
+                                    <span className={`text-[10px] uppercase tracking-widest font-bold font-display ${step.status === 'active' ? 'text-white' : 'text-white/40'}`}>
+                                        Step {step.number}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
                 {/* 2. Hero Section */}
-                <section className="container mx-auto px-4 mb-20 text-center">
+                <section className="container mx-auto px-4 mb-16 md:mb-20 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-[#00e5a0] font-mono text-sm tracking-[0.2em] font-bold block mb-4 uppercase">
+                        <span className="text-[#00e5a0] font-mono text-xs tracking-[0.2em] font-bold block mb-4 uppercase">
                             WEEK 1
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-display font-black text-white mb-6 tracking-tight leading-tight">
+                        <h1 className="text-4xl md:text-7xl font-display font-black text-white mb-6 tracking-tight leading-tight">
                             Discovery & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5a0] to-[#22d3ee]">Design</span>
                         </h1>
-                        <p className="text-xl italic text-[#94a3b8] mb-8 font-light max-w-2xl mx-auto">
+                        <p className="text-lg md:text-xl italic text-[#94a3b8] mb-8 font-light max-w-2xl mx-auto">
                             "We don't guess. We research."
                         </p>
-                        <div className="max-w-3xl mx-auto text-lg leading-relaxed mb-10 text-[#94a3b8]">
+                        <div className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 text-[#94a3b8]">
                             Before a single pixel is designed, we spend Week 1 deep inside your business. 
                             We study your competitors, map your audience, and identify exactly what your 
                             ideal customer needs to see before they buy. Then we translate all of that 
@@ -182,9 +184,9 @@ const Week1DiscoveryDesign = () => {
                 </section>
 
                 {/* 3. What Happens This Week - Vertical Timeline */}
-                <section className="container mx-auto px-4 max-w-4xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">What Happens This Week</h2>
-                    <div className="space-y-8 relative">
+                <section className="container mx-auto px-4 max-w-4xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 text-center">What Happens This Week</h2>
+                    <div className="space-y-6 md:space-y-8 relative">
                         <div className="absolute left-[31px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-[#00e5a0]/50 to-transparent hidden md:block" />
                         {timelineSteps.map((step, idx) => (
                             <motion.div 
@@ -193,15 +195,15 @@ const Week1DiscoveryDesign = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.2 }}
-                                className="group bg-[#111820] rounded-2xl border-l-4 border-[#00e5a0] p-8 shadow-card hover:shadow-card-hover transition-all border border-white/5"
+                                className="group bg-[#111820] rounded-2xl border-l-4 border-[#00e5a0] p-6 md:p-8 shadow-card hover:shadow-card-hover transition-all border border-white/5"
                             >
-                                <div className="flex items-start gap-6">
-                                    <div className="w-16 h-16 shrink-0 rounded-xl bg-[#00e5a0]/10 flex items-center justify-center group-hover:bg-[#00e5a0]/20 transition-colors">
+                                <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 rounded-xl bg-[#00e5a0]/10 flex items-center justify-center group-hover:bg-[#00e5a0]/20 transition-colors">
                                         {step.icon}
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-display font-bold text-white mb-2">{step.title}</h3>
-                                        <p className="text-[#94a3b8] leading-relaxed">{step.description}</p>
+                                        <h3 className="text-lg md:text-xl font-display font-bold text-white mb-2">{step.title}</h3>
+                                        <p className="text-[#94a3b8] text-sm md:text-base leading-relaxed">{step.description}</p>
                                     </div>
                                 </div>
                             </motion.div>
@@ -210,11 +212,11 @@ const Week1DiscoveryDesign = () => {
                 </section>
 
                 {/* 4 & 5. Checklist & Deliverables */}
-                <section className="container mx-auto px-4 max-w-6xl mb-32">
-                    <div className="grid md:grid-cols-2 gap-8">
+                <section className="container mx-auto px-4 max-w-6xl mb-24 md:mb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* What You Need to Provide */}
-                        <div className="bg-[#111820] rounded-2xl border-l-4 border-[#f59e0b] p-8 border border-white/5 h-full">
-                            <h3 className="text-2xl font-display font-bold text-white mb-8">What We'll Need From You</h3>
+                        <div className="bg-[#111820] rounded-2xl border-l-4 border-[#f59e0b] p-6 md:p-8 border border-white/5 h-full">
+                            <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-8">What We'll Need From You</h3>
                             <ul className="space-y-4">
                                 {[
                                     "Your brand logo (or we create one — ask us)",
@@ -227,19 +229,19 @@ const Week1DiscoveryDesign = () => {
                                         <div className="w-6 h-6 shrink-0 rounded-full bg-green-500/20 flex items-center justify-center mt-1">
                                             <Check className="w-4 h-4 text-green-500" />
                                         </div>
-                                        <span className="text-white font-medium">{item}</span>
+                                        <span className="text-white text-sm md:text-base font-medium">{item}</span>
                                     </li>
                                 ))}
                             </ul>
-                            <p className="mt-8 text-sm italic text-[#94a3b8]/60 p-4 bg-black/20 rounded-xl">
+                            <p className="mt-8 text-xs italic text-[#94a3b8]/60 p-4 bg-black/20 rounded-xl">
                                 Don't have everything? No stress — we guide you through it on our kickoff call.
                             </p>
                         </div>
 
                         {/* Deliverables Block */}
-                        <div className="bg-[#111820] rounded-2xl border border-[#00e5a0]/30 p-8 shadow-[0_0_30px_rgba(0,229,160,0.05)] relative overflow-hidden group">
+                        <div className="bg-[#111820] rounded-2xl border border-[#00e5a0]/30 p-6 md:p-8 shadow-[0_0_30px_rgba(0,229,160,0.05)] relative overflow-hidden group">
                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00e5a0]/5 blur-3xl -mr-16 -mt-16 group-hover:bg-[#00e5a0]/10 transition-all rounded-full" />
-                            <h3 className="text-2xl font-display font-bold text-[#00e5a0] mb-8 flex items-center gap-3">
+                            <h3 className="text-xl md:text-2xl font-display font-bold text-[#00e5a0] mb-8 flex items-center gap-3">
                                 <CheckCircle className="w-7 h-7" />
                                 Week 1 Deliverables
                             </h3>
@@ -251,8 +253,8 @@ const Week1DiscoveryDesign = () => {
                                     { title: "Competitor analysis summary", desc: "Condensed report on our findings and how we'll pivot to beat them." }
                                 ].map((item, idx) => (
                                     <li key={idx}>
-                                        <h4 className="text-white font-bold mb-1">{item.title}</h4>
-                                        <p className="text-sm text-[#94a3b8]">{item.desc}</p>
+                                        <h4 className="text-white font-bold mb-1 text-sm md:text-base">{item.title}</h4>
+                                        <p className="text-xs md:text-sm text-[#94a3b8]">{item.desc}</p>
                                     </li>
                                 ))}
                             </ul>
@@ -261,8 +263,8 @@ const Week1DiscoveryDesign = () => {
                 </section>
 
                 {/* 6. FAQ Section */}
-                <section className="container mx-auto px-4 max-w-4xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">Week 1 — Frequently Asked Questions</h2>
+                <section className="container mx-auto px-4 max-w-4xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 text-center">Week 1 — Frequently Asked Questions</h2>
                     <Accordion type="single" collapsible className="space-y-4">
                         {faqItems.map((item, idx) => (
                             <AccordionItem 
@@ -270,10 +272,10 @@ const Week1DiscoveryDesign = () => {
                                 value={`item-${idx}`}
                                 className="border border-white/5 bg-[#111820] rounded-xl px-2 overflow-hidden"
                             >
-                                <AccordionTrigger className="hover:no-underline text-white font-bold py-6 text-left hover:text-[#00e5a0] transition-colors">
+                                <AccordionTrigger className="hover:no-underline text-white font-bold py-6 text-left hover:text-[#00e5a0] transition-colors text-sm md:text-base">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-[#94a3b8] pb-6 leading-relaxed">
+                                <AccordionContent className="text-[#94a3b8] pb-6 leading-relaxed text-xs md:text-sm">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>
@@ -282,16 +284,16 @@ const Week1DiscoveryDesign = () => {
                 </section>
 
                 {/* 7. CTA Section */}
-                <section className="container mx-auto px-4 max-w-4xl mb-32">
-                    <div className="relative rounded-3xl p-12 overflow-hidden border border-white/10 group">
+                <section className="container mx-auto px-4 max-w-4xl mb-24 md:mb-32">
+                    <div className="relative rounded-3xl p-8 md:p-12 overflow-hidden border border-white/10 group">
                         <div className="absolute inset-0 bg-gradient-to-br from-[#111820] to-[#0a0a0a]" />
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from),_transparent_70%)] from-[#00e5a0]/10" />
                         
                         <div className="relative z-10 text-center">
-                            <h2 className="text-3xl font-display font-extrabold text-white mb-4">Ready to start your project?</h2>
-                            <p className="text-[#94a3b8] mb-8 text-lg">Free 30-minute strategy call. No commitment.</p>
+                            <h2 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-4">Ready to start your project?</h2>
+                            <p className="text-[#94a3b8] mb-8 text-base md:text-lg">Free 30-minute strategy call. No commitment.</p>
                             <Link to="/#contact">
-                                <Button size="lg" className="bg-[#00e5a0] hover:bg-[#00c58a] text-black font-bold h-14 px-10 text-lg rounded-xl shadow-[0_0_30px_rgba(0,229,160,0.3)] hover:scale-105 transition-all">
+                                <Button size="lg" className="w-full sm:w-auto bg-[#00e5a0] hover:bg-[#00c58a] text-black font-bold h-14 px-10 text-base md:text-lg rounded-xl shadow-[0_0_30px_rgba(0,229,160,0.3)] hover:scale-105 transition-all">
                                     Book Your Free Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
                             </Link>

@@ -218,35 +218,37 @@ Please help me get started!`;
                 <div className="container mx-auto px-4 mb-2 overflow-hidden">
                     <div className="flex items-center justify-between relative max-w-4xl mx-auto overflow-x-auto pb-4 scrollbar-hide">
                         <div className="absolute top-5 left-0 right-0 h-[2px] bg-white/10 -z-10 hidden md:block" />
-                        {steps.map((step) => (
-                            <Link 
-                                key={step.number} 
-                                to={`/process/${step.slug}`}
-                                className="flex flex-col items-center min-w-[100px] group transition-all"
-                            >
-                                <div className={`
-                                    w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-black mb-2
-                                    ${step.status === 'active' ? 'bg-[#00e5a0] shadow-[0_0_20px_rgba(0,229,160,0.5)] scale-110' : 
-                                      step.status === 'completed' ? 'bg-[#00e5a0]' : 'bg-white/10 text-white/40 group-hover:bg-white/20'}
-                                    transition-all duration-300
-                                `}>
-                                    {step.status === 'completed' ? <Check className="w-5 h-5" /> : step.number}
-                                </div>
-                                <span className={`text-[10px] uppercase tracking-widest font-bold font-display ${step.status === 'active' ? 'text-white' : 'text-white/40'}`}>
-                                    Step {step.number}
-                                </span>
-                            </Link>
-                        ))}
+                        <div className="flex items-center justify-between min-w-[600px] md:min-w-0 w-full">
+                            {steps.map((step) => (
+                                <Link 
+                                    key={step.number} 
+                                    to={`/process/${step.slug}`}
+                                    className="flex flex-col items-center min-w-[100px] group transition-all"
+                                >
+                                    <div className={`
+                                        w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-black mb-2
+                                        ${step.status === 'active' ? 'bg-[#00e5a0] shadow-[0_0_20px_rgba(0,229,160,0.5)] scale-110' : 
+                                        step.status === 'completed' ? 'bg-[#00e5a0]' : 'bg-white/10 text-white/40 group-hover:bg-white/20'}
+                                        transition-all duration-300
+                                    `}>
+                                        {step.status === 'completed' ? <Check className="w-5 h-5" /> : step.number}
+                                    </div>
+                                    <span className={`text-[10px] uppercase tracking-widest font-bold font-display ${step.status === 'active' ? 'text-white' : 'text-white/40'}`}>
+                                        Step {step.number}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className="flex justify-center mb-16">
+                <div className="flex justify-center mb-8 md:mb-16">
                     <span className="bg-[#111820] text-[#00e5a0] text-[10px] px-3 py-1 rounded-full border border-[#00e5a0]/20 font-bold tracking-widest uppercase">
                         ONGOING — No end date
                     </span>
                 </div>
 
                 {/* 2. Hero Section */}
-                <section className="container mx-auto px-4 mb-24 text-center">
+                <section className="container mx-auto px-4 mb-16 md:mb-24 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -255,13 +257,13 @@ Please help me get started!`;
                         <span className="text-[#00e5a0] font-mono text-xs tracking-[0.2em] font-bold block mb-4 uppercase">
                             ONGOING
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-display font-black text-white mb-6 tracking-tight leading-tight">
+                        <h1 className="text-4xl md:text-7xl font-display font-black text-white mb-6 tracking-tight leading-tight">
                             Support & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5a0] to-[#22d3ee]">Growth</span>
                         </h1>
-                        <p className="text-xl text-[#94a3b8] mb-8 font-light max-w-2xl mx-auto italic">
+                        <p className="text-lg md:text-xl text-[#94a3b8] mb-8 font-light max-w-2xl mx-auto italic">
                             "We don't disappear after launch."
                         </p>
-                        <div className="max-w-3xl mx-auto text-lg leading-relaxed mb-10 text-[#94a3b8]">
+                        <div className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed mb-10 text-[#94a3b8]">
                             Most agencies vanish the moment your site goes live. We don't. 
                             Scalvicon offers ongoing monthly support plans to keep your website 
                             fast, secure, updated, and growing in search rankings. Think of us 
@@ -271,9 +273,9 @@ Please help me get started!`;
                 </section>
 
                 {/* 3. What's Included - Feature Cards */}
-                <section className="container mx-auto px-4 max-w-6xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">Everything Your Business Needs Post-Launch</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <section className="container mx-auto px-4 max-w-6xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 text-center">Everything Your Business Needs Post-Launch</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         {supportFeatures.map((feature, idx) => (
                             <motion.div 
                                 key={idx}
@@ -281,7 +283,7 @@ Please help me get started!`;
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-[#151c25] p-8 rounded-2xl border border-white/5 hover:border-[#00e5a0]/30 transition-all group"
+                                className="bg-[#151c25] p-6 md:p-8 rounded-2xl border border-white/5 hover:border-[#00e5a0]/30 transition-all group"
                             >
                                 <div className="w-12 h-12 bg-[#00e5a0]/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                     {feature.icon}
@@ -313,15 +315,15 @@ Please help me get started!`;
                 </section>
 
                 {/* 5. Monthly Plans Pricing Section */}
-                <section className="container mx-auto px-4 max-w-6xl mb-32">
-                    <h2 className="text-3xl font-display font-bold text-white mb-16 text-center">Choose Your Support Plan</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
+                <section className="container mx-auto px-4 max-w-6xl mb-24 md:mb-32">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-12 md:mb-16 text-center">Choose Your Support Plan</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                         {pricingPlans.map((plan, idx) => (
                             <div 
                                 key={idx}
                                 className={`
-                                    relative bg-[#151c25] rounded-3xl p-10 border transition-all hover:-translate-y-2
-                                    ${plan.popular ? 'border-[#00e5a0] shadow-[0_30px_60px_-15px_rgba(0,229,160,0.15)] scale-105 z-10' : 'border-white/5 shadow-xl'}
+                                    relative bg-[#151c25] rounded-3xl p-8 md:p-10 border transition-all hover:-translate-y-2
+                                    ${plan.popular ? 'border-[#00e5a0] shadow-[0_30px_60px_-15px_rgba(0,229,160,0.15)] md:scale-105 z-10' : 'border-white/5 shadow-xl'}
                                 `}
                             >
                                 {plan.popular && (
@@ -351,24 +353,24 @@ Please help me get started!`;
                             </div>
                         ))}
                     </div>
-                    <p className="mt-12 text-center text-sm italic text-[#94a3b8]/50">
+                    <p className="mt-8 md:mt-12 text-center text-sm italic text-[#94a3b8]/50">
                         Prices shown in INR. Custom plans available for agencies and multi-site clients.
                     </p>
                 </section>
 
                 {/* 6. SEO Growth Section */}
-                <section className="container mx-auto px-4 max-w-6xl mb-32">
-                    <div className="bg-[#111820] rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+                <section className="container mx-auto px-4 max-w-6xl mb-24 md:mb-32">
+                    <div className="bg-[#111820] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden">
                         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#00e5a0]/5 to-transparent" />
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 relative z-10">Your Website Should Get Better Over Time</h2>
-                        <p className="text-lg text-[#94a3b8] max-w-2xl mx-auto mb-16 relative z-10 leading-relaxed">
+                        <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 relative z-10">Your Website Should Get Better Over Time</h2>
+                        <p className="text-base md:text-lg text-[#94a3b8] max-w-2xl mx-auto mb-12 md:mb-16 relative z-10 leading-relaxed">
                             A launched website is just the starting point. With our Growth plan, we actively 
                             work on improving your Google rankings every month — new content, keyword 
                             targeting, backlink strategy, and technical SEO fixes based on real data.
                         </p>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10">
                             {growthStats.map((stat, idx) => (
-                                <div key={idx} className="bg-black/40 p-8 rounded-3xl border border-white/5 text-left hover:border-[#00e5a0]/20 transition-all">
+                                <div key={idx} className="bg-black/40 p-6 md:p-8 rounded-3xl border border-white/5 text-left hover:border-[#00e5a0]/20 transition-all">
                                     <div className="w-12 h-12 bg-[#00e5a0]/10 rounded-xl flex items-center justify-center mb-6 text-[#00e5a0]">
                                         {stat.icon}
                                     </div>
@@ -402,22 +404,22 @@ Please help me get started!`;
                 </section>
 
                 {/* 8. Final CTA Section */}
-                <section className="container mx-auto px-4 max-w-5xl mb-32">
-                    <div className="relative rounded-[2.5rem] p-12 md:p-20 overflow-hidden border border-white/5 group bg-[#111820]">
+                <section className="container mx-auto px-4 max-w-5xl mb-24 md:mb-32">
+                    <div className="relative rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-20 overflow-hidden border border-white/5 group bg-[#111820]">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from),_transparent_70%)] from-[#00e5a0]/10 opacity-70" />
                         <div className="relative z-10 text-center">
-                            <h2 className="text-4xl md:text-5xl font-display font-extrabold text-white mb-6">Ready to Build Something That Lasts?</h2>
-                            <p className="text-[#94a3b8] mb-12 text-xl max-w-xl mx-auto">
+                            <h2 className="text-3xl md:text-5xl font-display font-extrabold text-white mb-6">Ready to Build Something That Lasts?</h2>
+                            <p className="text-[#94a3b8] mb-10 md:mb-12 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
                                 "From idea to live website in 4 weeks — then we grow it together."
                             </p>
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                                <Link to="/#contact">
-                                    <Button size="lg" className="bg-[#00e5a0] hover:bg-[#00c58a] text-black font-bold h-16 px-12 text-xl rounded-2xl shadow-[0_0_40px_rgba(0,229,160,0.3)] hover:scale-105 transition-all">
-                                        Start Your Project <ArrowRight className="ml-2 w-6 h-6" />
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
+                                <Link to="/#contact" className="w-full sm:w-auto">
+                                    <Button size="lg" className="w-full sm:w-auto bg-[#00e5a0] hover:bg-[#00c58a] text-black font-bold h-14 md:h-16 px-8 md:px-12 text-lg md:text-xl rounded-2xl shadow-[0_0_40px_rgba(0,229,160,0.3)] hover:scale-105 transition-all">
+                                        Start Your Project <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
                                     </Button>
                                 </Link>
-                                <Link to="/portfolio">
-                                    <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/5 h-16 px-12 text-xl rounded-2xl transition-all">
+                                <Link to="/portfolio" className="w-full sm:w-auto">
+                                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-white/20 text-white hover:bg-white/5 h-14 md:h-16 px-8 md:px-12 text-lg md:text-xl rounded-2xl transition-all">
                                         View Our Work
                                     </Button>
                                 </Link>
