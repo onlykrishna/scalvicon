@@ -28,14 +28,19 @@ const PortfolioDetail = lazy(() => import("./pages/PortfolioDetail").then(module
 const Careers = lazy(() => import("./pages/company/Careers"));
 const Terms = lazy(() => import("./pages/company/Terms"));
 const Privacy = lazy(() => import("./pages/company/Privacy"));
+const Week1DiscoveryDesign = lazy(() => import("./pages/process/Week1DiscoveryDesign"));
+const Week2Development = lazy(() => import("./pages/process/Week2Development"));
+const Week3ContentIntegrations = lazy(() => import("./pages/process/Week3ContentIntegrations"));
+const Week4TestingLaunch = lazy(() => import("./pages/process/Week4TestingLaunch"));
+const OngoingSupportGrowth = lazy(() => import("./pages/process/OngoingSupportGrowth"));
 
 import { BottomCTAPopup } from "./components/BottomCTAPopup";
 import ChatWidget from "./features/chatbot";
 
-const AdminFallback = () => (
+const PageFallback = () => (
   <div className="flex h-screen items-center justify-center bg-background gap-3">
     <RefreshCw size={18} className="animate-spin text-primary" />
-    <span className="text-sm text-muted-foreground font-mono">Loading admin…</span>
+    <span className="text-sm text-muted-foreground font-mono">Loading…</span>
   </div>
 );
 
@@ -57,7 +62,7 @@ const App = () => (
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<AdminFallback />}>
+                <Suspense fallback={<PageFallback />}>
                   <Dashboard />
                 </Suspense>
               </ProtectedRoute>
@@ -67,7 +72,7 @@ const App = () => (
             path="/portal/project/:id"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<AdminFallback />}>
+                <Suspense fallback={<PageFallback />}>
                   <ProjectDetailView />
                 </Suspense>
               </ProtectedRoute>
@@ -79,23 +84,28 @@ const App = () => (
             path="/admin"
             element={
               <AdminRoute>
-                <Suspense fallback={<AdminFallback />}>
+                <Suspense fallback={<PageFallback />}>
                   <Admin />
                 </Suspense>
               </AdminRoute>
             }
           />
 
-          <Route path="/services/:slug" element={<Suspense fallback={<AdminFallback />}><ServiceDetail /></Suspense>} />
-          <Route path="/problems/:slug" element={<Suspense fallback={<AdminFallback />}><ProblemDetail /></Suspense>} />
-          <Route path="/process/:slug" element={<Suspense fallback={<AdminFallback />}><ProcessDetail /></Suspense>} />
-          <Route path="/portfolio/:slug" element={<Suspense fallback={<AdminFallback />}><PortfolioDetail /></Suspense>} />
+          <Route path="/services/:slug" element={<Suspense fallback={<PageFallback />}><ServiceDetail /></Suspense>} />
+          <Route path="/problems/:slug" element={<Suspense fallback={<PageFallback />}><ProblemDetail /></Suspense>} />
+          <Route path="/process/week-1-discovery-design" element={<Suspense fallback={<PageFallback />}><Week1DiscoveryDesign /></Suspense>} />
+          <Route path="/process/week-2-development" element={<Suspense fallback={<PageFallback />}><Week2Development /></Suspense>} />
+          <Route path="/process/week-3-content-integrations" element={<Suspense fallback={<PageFallback />}><Week3ContentIntegrations /></Suspense>} />
+          <Route path="/process/week-4-testing-launch" element={<Suspense fallback={<PageFallback />}><Week4TestingLaunch /></Suspense>} />
+          <Route path="/process/ongoing-support-growth" element={<Suspense fallback={<PageFallback />}><OngoingSupportGrowth /></Suspense>} />
+          <Route path="/process/:slug" element={<Suspense fallback={<PageFallback />}><ProcessDetail /></Suspense>} />
+          <Route path="/portfolio/:slug" element={<Suspense fallback={<PageFallback />}><PortfolioDetail /></Suspense>} />
 
           {/* Blog — public, lazy loaded */}
           <Route
             path="/blog"
             element={
-              <Suspense fallback={<AdminFallback />}>
+              <Suspense fallback={<PageFallback />}>
                 <Blog />
               </Suspense>
             }
@@ -103,16 +113,16 @@ const App = () => (
           <Route
             path="/blog/:slug"
             element={
-              <Suspense fallback={<AdminFallback />}>
+              <Suspense fallback={<PageFallback />}>
                 <BlogPost />
               </Suspense>
             }
           />
 
           {/* Company pages */}
-          <Route path="/careers" element={<Suspense fallback={<AdminFallback />}><Careers /></Suspense>} />
-          <Route path="/terms" element={<Suspense fallback={<AdminFallback />}><Terms /></Suspense>} />
-          <Route path="/privacy" element={<Suspense fallback={<AdminFallback />}><Privacy /></Suspense>} />
+          <Route path="/careers" element={<Suspense fallback={<PageFallback />}><Careers /></Suspense>} />
+          <Route path="/terms" element={<Suspense fallback={<PageFallback />}><Terms /></Suspense>} />
+          <Route path="/privacy" element={<Suspense fallback={<PageFallback />}><Privacy /></Suspense>} />
 
           {/* 404 catch-all */}
           <Route path="*" element={<NotFound />} />
