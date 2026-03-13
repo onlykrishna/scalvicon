@@ -26,16 +26,21 @@
     content="Premium web development and digital solutions tailored for SMEs and emerging brands. Scalvicon builds high-performance, SEO-optimized websites that drive growth." />
   <meta name="twitter:image" content="/og-image.png" />
 
-  <!-- Speed Optimization: Preconnect to critical domains -->
+  <!-- Speed Optimization: Resource Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://scalvicon-9bf2f.firebaseapp.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://scalvicon-9bf2f.firebaseapp.com" />
 
-  <!-- Preload Critical Fonts to prevent FOUT/LCP delay -->
+  <!-- Preload Critical Fonts (Reducing weights to minimize payload) -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" as="style" />
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" />
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  </noscript>
 </head>
 
 <body>

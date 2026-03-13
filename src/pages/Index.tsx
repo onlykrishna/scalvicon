@@ -1,19 +1,24 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MarqueeTicker from "@/components/MarqueeTicker";
-import Services from "@/components/Services";
-import PainPoints from "@/components/PainPoints";
-import Portfolio from "@/components/Portfolio";
-import Process from "@/components/Process";
-import Pricing from "@/components/Pricing";
-import Testimonials from "@/components/Testimonials";
-import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
-import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
+
+const Services = lazy(() => import("@/components/Services"));
+const PainPoints = lazy(() => import("@/components/PainPoints"));
+const Portfolio = lazy(() => import("@/components/Portfolio"));
+const Process = lazy(() => import("@/components/Process"));
+const Pricing = lazy(() => import("@/components/Pricing"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const CTASection = lazy(() => import("@/components/CTASection"));
+const ContactForm = lazy(() => import("@/components/ContactForm"));
+const Footer = lazy(() => import("@/components/Footer"));
+
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollToTop from "@/components/ScrollToTop";
 import { SEO } from "@/components/SEO";
+
+const SectionLoading = () => <div className="h-[300px] w-full bg-background animate-pulse" />;
 
 const Index = () => (
   <div className="min-h-screen bg-background text-foreground">
@@ -25,16 +30,18 @@ const Index = () => (
     <Navbar />
     <Hero />
     <MarqueeTicker />
-    <Services />
-    <PainPoints />
-    <Portfolio />
-    <Process />
-    <Pricing />
-    <Testimonials />
-    <FAQSection />
-    <CTASection />
-    <ContactForm />
-    <Footer />
+    <Suspense fallback={<SectionLoading />}>
+      <Services />
+      <PainPoints />
+      <Portfolio />
+      <Process />
+      <Pricing />
+      <Testimonials />
+      <FAQSection />
+      <CTASection />
+      <ContactForm />
+      <Footer />
+    </Suspense>
     <WhatsAppButton />
     <ScrollToTop />
   </div>
