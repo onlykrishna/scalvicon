@@ -32,6 +32,39 @@ export interface PortfolioProject {
 
 export const portfolioProjects: PortfolioProject[] = [
     {
+        id: 7,
+        slug: "divine-hospital-raebareli",
+        title: "Divine Hospital & Advanced Laparoscopic Centre",
+        category: "Healthcare",
+        tags: ["Healthcare", "Ayushman Bharat", "Laparoscopic", "Responsive"],
+        gradient: "from-emerald-600/20 to-blue-600/20",
+        accentColor: "#10b981",
+        icon: "HeartPulse",
+        description:
+            "Professional digital presence for a state-of-the-art Raebareli hospital, highlighting Ayushman Bharat empanelment and advanced surgical expertise.",
+        metrics: [
+            { label: "Rural Load Time", value: "<1.2s", icon: "Zap" },
+            { label: "Mobile Optimized", value: "100%", icon: "Smartphone" },
+            { label: "Specialties List", value: "15+", icon: "Stethoscope" },
+        ],
+        deliveryWeeks: 3,
+        liveUrl: "https://divinehospitalrbl.netlify.app/",
+        challenge: "Divine Hospital needed to bridge the gap between their advanced clinical capabilities and their digital visibility, especially for patients in Raebareli relying on Ayushman Bharat services.",
+        solutionTitle: "Fast, Accessible & Informative Healthcare Hub",
+        solutionDetails: [
+            "Optimized for low-bandwidth rural mobile networks ensuring 100% accessibility",
+            "Clear architectural hierarchy for Oncology, Urology, and Laparoscopic specialties",
+            "Prominent Ayushman Bharat status display to build local trust and awareness",
+            "Streamlined 'One-Tap' appointment booking and emergency contact integration"
+        ],
+        testimonial: {
+            quote: "The website has significantly improved how patients in Raebareli find and trust our specialized services. The mobile speed is exceptional even on slower networks.",
+            author: "Hospital Admin",
+            role: "Divine Hospital"
+        },
+        techStack: ["React 18", "Vite", "Tailwind CSS", "Netlify"]
+    },
+    {
         id: 1,
         slug: "sharma-dental-clinic",
         title: "Sharma Dental Clinic",
@@ -227,39 +260,6 @@ export const portfolioProjects: PortfolioProject[] = [
             role: "Senior Partner"
         },
         techStack: ["React 18", "Zod Validations", "Framer Motion"]
-    },
-    {
-        id: 7,
-        slug: "divine-hospital-raebareli",
-        title: "Divine Hospital & Advanced Laparoscopic Centre",
-        category: "Healthcare",
-        tags: ["Healthcare", "Ayushman Bharat", "Laparoscopic", "Responsive"],
-        gradient: "from-emerald-600/20 to-blue-600/20",
-        accentColor: "#10b981",
-        icon: "HeartPulse",
-        description:
-            "Professional digital presence for a state-of-the-art Raebareli hospital, highlighting Ayushman Bharat empanelment and advanced surgical expertise.",
-        metrics: [
-            { label: "Rural Load Time", value: "<1.2s", icon: "Zap" },
-            { label: "Mobile Optimized", value: "100%", icon: "Smartphone" },
-            { label: "Specialties List", value: "15+", icon: "Stethoscope" },
-        ],
-        deliveryWeeks: 3,
-        liveUrl: "https://divinehospitalrbl.netlify.app/",
-        challenge: "Divine Hospital needed to bridge the gap between their advanced clinical capabilities and their digital visibility, especially for patients in Raebareli relying on Ayushman Bharat services.",
-        solutionTitle: "Fast, Accessible & Informative Healthcare Hub",
-        solutionDetails: [
-            "Optimized for low-bandwidth rural mobile networks ensuring 100% accessibility",
-            "Clear architectural hierarchy for Oncology, Urology, and Laparoscopic specialties",
-            "Prominent Ayushman Bharat status display to build local trust and awareness",
-            "Streamlined 'One-Tap' appointment booking and emergency contact integration"
-        ],
-        testimonial: {
-            quote: "The website has significantly improved how patients in Raebareli find and trust our specialized services. The mobile speed is exceptional even on slower networks.",
-            author: "Hospital Admin",
-            role: "Divine Hospital"
-        },
-        techStack: ["React 18", "Vite", "Tailwind CSS", "Netlify"]
     },
 ];
 
