@@ -24,6 +24,7 @@ const ServiceDetail = lazy(() => import("./pages/ServiceDetail").then(module => 
 const ProblemDetail = lazy(() => import("./pages/ProblemDetail").then(module => ({ default: module.ProblemDetailPage })));
 const ProcessDetail = lazy(() => import("./pages/ProcessDetail").then(module => ({ default: module.ProcessDetailPage })));
 const PortfolioDetail = lazy(() => import("./pages/PortfolioDetail").then(module => ({ default: module.PortfolioDetailPage })));
+const PortfolioGallery = lazy(() => import("./pages/PortfolioGallery"));
 
 const Careers = lazy(() => import("./pages/company/Careers"));
 const Terms = lazy(() => import("./pages/company/Terms"));
@@ -99,6 +100,7 @@ const App = () => (
           <Route path="/process/week-4-testing-launch" element={<Suspense fallback={<PageFallback />}><Week4TestingLaunch /></Suspense>} />
           <Route path="/process/ongoing-support-growth" element={<Suspense fallback={<PageFallback />}><OngoingSupportGrowth /></Suspense>} />
           <Route path="/process/:slug" element={<Suspense fallback={<PageFallback />}><ProcessDetail /></Suspense>} />
+          <Route path="/portfolio" element={<Suspense fallback={<PageFallback />}><PortfolioGallery /></Suspense>} />
           <Route path="/portfolio/:slug" element={<Suspense fallback={<PageFallback />}><PortfolioDetail /></Suspense>} />
 
           {/* Blog — public, lazy loaded */}

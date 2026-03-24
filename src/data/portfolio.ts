@@ -32,6 +32,39 @@ export interface PortfolioProject {
 
 export const portfolioProjects: PortfolioProject[] = [
     {
+        id: 8,
+        slug: "dhun-musicals-e-commerce",
+        title: "Dhun Musicals",
+        category: "E-commerce",
+        tags: ["E-commerce", "Musical Instruments", "Web Audio API", "Premium"],
+        gradient: "from-orange-600/20 to-amber-600/20",
+        accentColor: "#f59e0b",
+        icon: "Music",
+        description:
+            "Premium e-commerce platform for professional-grade Indian bamboo flutes, featuring interactive tuning tools and a divine aesthetic.",
+        metrics: [
+            { label: "Satisfied Customers", value: "20k+", icon: "Users" },
+            { label: "Tuning Standard", value: "440Hz", icon: "Mic" },
+            { label: "Experience", value: "12+ yrs", icon: "Clock" },
+        ],
+        deliveryWeeks: 6,
+        liveUrl: "https://www.dhunmusicals.com",
+        challenge: "Dhun Musicals needed to translate the tactile, auditory essence of premium bamboo flutes into a digital experience while providing professional tools for serious musicians.",
+        solutionTitle: "The Digital Flute Sanctuary",
+        solutionDetails: [
+            "Developed a Web Audio API-powered 'Scale Finder' for real-time tuning verification",
+            "Crafted a 'Divine' UI using high-end imagery of Assam bamboo and leather textures",
+            "Built specialized e-commerce filtering by scale, skill level, and wood density",
+            "Integrated a professional-grade metronome and digital fingering charts for learners"
+        ],
+        testimonial: {
+            quote: "The scale finder tool is a game-changer for our customers. The site finally reflects the premium quality of the Bansuris we've been crafting for over a decade.",
+            author: "Founder",
+            role: "Dhun Musicals"
+        },
+        techStack: ["React 18", "Web Audio API", "Tailwind CSS", "Firebase Hosting"]
+    },
+    {
         id: 7,
         slug: "divine-hospital-raebareli",
         title: "Divine Hospital & Advanced Laparoscopic Centre",
@@ -265,6 +298,7 @@ export const portfolioProjects: PortfolioProject[] = [
 
 export const portfolioCategories = [
     "All",
+    "E-commerce",
     "Healthcare",
     "Salon & Spa",
     "Real Estate",

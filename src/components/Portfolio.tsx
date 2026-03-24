@@ -4,7 +4,7 @@ import {
   Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
   Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
   MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
-  ExternalLink, X, HeartPulse, Smartphone, type LucideIcon,
+  ExternalLink, X, HeartPulse, Smartphone, ArrowLeft, Music, Mic, type LucideIcon,
 } from "lucide-react";
 import { fadeUp, fadeUpWithDelay, stagger } from "@/lib/animations";
 import { portfolioProjects, portfolioCategories, type PortfolioProject } from "@/data/portfolio";
@@ -16,7 +16,7 @@ const iconMap: Record<string, LucideIcon> = {
   Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
   Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
   MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
-  HeartPulse, Smartphone,
+  HeartPulse, Smartphone, Music, Mic,
 };
 
 const Icon = ({ name, ...props }: { name: string; size?: number; className?: string; style?: React.CSSProperties }) => {
@@ -85,14 +85,20 @@ function PortfolioCard({
 }
 
 // ─── Portfolio Section ─────────────────────────────────────────────────────────
-const Portfolio = () => {
+interface PortfolioProps {
+  showLimit?: number;
+}
+
+const Portfolio = ({ showLimit }: PortfolioProps) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const navigate = useNavigate();
 
-  const filtered =
+  const allFiltered =
     activeCategory === "All"
       ? portfolioProjects
       : portfolioProjects.filter((p) => p.category === activeCategory);
+
+  const filtered = showLimit ? allFiltered.slice(0, showLimit) : allFiltered;
 
   return (
     <section id="portfolio" className="section-padding dot-grid-bg relative">
@@ -151,8 +157,27 @@ const Portfolio = () => {
             ))}
           </motion.div>
         </AnimatePresence>
-      </div>
 
+        {/* View All Button (Only on Home Page / Limited View) */}
+        {showLimit && allFiltered.length > showLimit && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-12"
+          >
+            <button
+              onClick={() => navigate("/portfolio")}
+              className="group relative px-8 py-4 bg-primary text-black font-bold rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(0,229,160,0.2)] hover:shadow-[0_0_30px_rgba(0,229,160,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              <span className="relative flex items-center gap-2">
+                Explore Full Portfolio <ArrowLeft className="rotate-180" size={18} />
+              </span>
+            </button>
+          </motion.div>
+        )}
+      </div>
     </section>
   );
 };

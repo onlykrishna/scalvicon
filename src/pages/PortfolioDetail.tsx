@@ -22,6 +22,8 @@ import {
     ChartBar,
     HeartPulse,
     Smartphone,
+    Music,
+    Mic,
     LucideIcon
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
@@ -31,7 +33,7 @@ const iconMap: Record<string, LucideIcon> = {
     Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
     Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
     MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
-    HeartPulse, Smartphone,
+    HeartPulse, Smartphone, Music, Mic,
 };
 
 export const PortfolioDetailPage = () => {

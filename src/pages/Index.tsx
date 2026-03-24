@@ -33,7 +33,7 @@ const Index = () => (
     <Suspense fallback={<SectionLoading />}>
       <Services />
       <PainPoints />
-      <Portfolio />
+      <Portfolio showLimit={6} />
       <Process />
       <Pricing />
       <Testimonials />
