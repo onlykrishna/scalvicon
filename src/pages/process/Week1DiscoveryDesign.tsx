@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -112,16 +111,11 @@ const Week1DiscoveryDesign = () => {
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-[#94a3b8] font-body selection:bg-[#00e5a0]/30">
             <SEO 
-                title="Week 1: Discovery & Design | Scalvicon Web Solutions Process"
+                title="Week 1: Discovery & Design | Web Development Process"
                 description="In Week 1, Scalvicon learns your business, competitors, and goals — then delivers 2 custom design concepts tailored for conversions. No guesswork, pure strategy."
-                url="https://scalvicon.com/process/week-1-discovery-design"
+                url="https://scalvicon-9bf2f.web.app/process/week-1-discovery-design"
+                schema={[howToSchema, faqSchema]}
             />
-            <Helmet>
-                <meta property="og:title" content="Week 1 — Discovery & Design | How Scalvicon Works" />
-                <meta property="og:description" content="See exactly what happens in Week 1 of your Scalvicon project. Business discovery, competitor research, and 2 bespoke design concepts delivered." />
-                <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
-                <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-            </Helmet>
 
             <Navbar />
 

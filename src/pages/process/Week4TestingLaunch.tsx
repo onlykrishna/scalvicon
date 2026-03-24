@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -119,14 +118,11 @@ const Week4TestingLaunch = () => {
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-[#94a3b8] font-body selection:bg-[#f97316]/30">
             <SEO 
-                title="Week 4: Testing & Launch | Website Launch Checklist | Scalvicon"
+                title="Week 4: Testing & Launch | Website Launch Checklist"
                 description="Week 4 is go-live. Scalvicon runs cross-browser testing, speed optimisation, and launches your site — with a Loom walkthrough video so you know exactly how it works."
-                url="https://scalvicon.com/process/week-4-testing-launch"
+                url="https://scalvicon-9bf2f.web.app/process/week-4-testing-launch"
+                schema={howToSchema}
             />
-            <Helmet>
-                <meta property="og:title" content="Week 4 — Testing & Launch | Scalvicon Process" />
-                <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
-            </Helmet>
 
             <Navbar />
 

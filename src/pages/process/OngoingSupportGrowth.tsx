@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -203,13 +202,10 @@ Please help me get started!`;
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-[#94a3b8] font-body selection:bg-[#00e5a0]/30">
             <SEO 
-                title="Ongoing Support & Growth | Monthly Website Maintenance | Scalvicon"
+                title="Ongoing Support & Growth | Monthly Website Maintenance"
                 description="After launch, Scalvicon keeps your website fast, secure, and growing. Monthly maintenance plans covering hosting, backups, SEO updates, and content changes."
-                url="https://scalvicon.com/process/ongoing-support-growth"
+                url="https://scalvicon-9bf2f.web.app/process/ongoing-support-growth"
             />
-            <Helmet>
-                <meta property="og:title" content="Ongoing Support & Growth | Scalvicon Monthly Plans" />
-            </Helmet>
 
             <Navbar />
 

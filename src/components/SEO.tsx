@@ -8,7 +8,8 @@ interface SEOProps {
     type?: "website" | "article";
     publishedTime?: string;
     author?: string;
-    keywords?: string | string[]; // support array as well
+    keywords?: string | string[];
+    schema?: any; // Single schema or array of schemas
 }
 
 const SITE_NAME = "Scalvicon";
@@ -29,6 +30,7 @@ export const SEO = ({
     publishedTime,
     author,
     keywords = DEFAULT_KEYWORDS,
+    schema,
 }: SEOProps) => {
     const fullTitle = title === DEFAULT_TITLE
         ? title
@@ -104,6 +106,13 @@ export const SEO = ({
                     }
                 })}
             </script>
+
+            {/* Custom Schema */}
+            {schema && (
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            )}
 
             {/* Canonical */}
             <link rel="canonical" href={url} />

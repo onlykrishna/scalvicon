@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -124,14 +123,11 @@ const Week3ContentIntegrations = () => {
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-[#94a3b8] font-body selection:bg-[#f59e0b]/30">
             <SEO 
-                title="Week 3: Content & Integrations | SEO Copywriting & Tools | Scalvicon"
+                title="Week 3: Content & Integrations | SEO Copywriting & Tools"
                 description="Week 3 — Scalvicon adds your content, writes SEO-optimised copy, and connects WhatsApp, Google Maps, CRM, and all third-party tools your business needs."
-                url="https://scalvicon.com/process/week-3-content-integrations"
+                url="https://scalvicon-9bf2f.web.app/process/week-3-content-integrations"
+                schema={howToSchema}
             />
-            <Helmet>
-                <meta property="og:title" content="Week 3 — Content & Integrations | Scalvicon Process" />
-                <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
-            </Helmet>
 
             <Navbar />
 

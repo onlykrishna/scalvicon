@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -127,14 +126,11 @@ const Week2Development = () => {
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-[#94a3b8] font-body selection:bg-[#22d3ee]/30">
             <SEO 
-                title="Week 2: Development | Mobile-First Web Development | Scalvicon"
+                title="Week 2: Development | Mobile-First Web Development"
                 description="In Week 2, Scalvicon builds your approved design into a fast, mobile-first website. Clean code, built for speed, SEO, and conversions from day one."
-                url="https://scalvicon.com/process/week-2-development"
+                url="https://scalvicon-9bf2f.web.app/process/week-2-development"
+                schema={howToSchema}
             />
-            <Helmet>
-                <meta property="og:title" content="Week 2 — Development | How Scalvicon Builds Your Website" />
-                <script type="application/ld+json">{JSON.stringify(howToSchema)}</script>
-            </Helmet>
 
             <Navbar />
 
