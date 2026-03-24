@@ -20,6 +20,8 @@ import {
     Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
     MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
     ChartBar,
+    HeartPulse,
+    Smartphone,
     LucideIcon
 } from 'lucide-react';
 import { SEO } from '@/components/SEO';
@@ -29,6 +31,7 @@ const iconMap: Record<string, LucideIcon> = {
     Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
     Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
     MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
+    HeartPulse, Smartphone,
 };
 
 export const PortfolioDetailPage = () => {

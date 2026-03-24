@@ -4,7 +4,7 @@ import {
   Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
   Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
   MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
-  ExternalLink, X, type LucideIcon,
+  ExternalLink, X, HeartPulse, Smartphone, type LucideIcon,
 } from "lucide-react";
 import { fadeUp, fadeUpWithDelay, stagger } from "@/lib/animations";
 import { portfolioProjects, portfolioCategories, type PortfolioProject } from "@/data/portfolio";
@@ -16,6 +16,7 @@ const iconMap: Record<string, LucideIcon> = {
   Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
   Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
   MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
+  HeartPulse, Smartphone,
 };
 
 const Icon = ({ name, ...props }: { name: string; size?: number; className?: string; style?: React.CSSProperties }) => {
