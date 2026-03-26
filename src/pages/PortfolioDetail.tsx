@@ -104,16 +104,31 @@ export const PortfolioDetailPage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-4xl"
                     >
-                        <div className="mb-4 flex items-center gap-4">
-                            <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} text-2xl`}>
-                                <IconComponent style={{ color: project.accentColor }} size={32} />
-                            </div>
-                            <div>
-                                <div className="mb-1 flex items-center gap-2 text-sm text-muted-foreground uppercase tracking-wider font-mono">
-                                    {project.category}
+                        <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
+                            <div className="flex items-center gap-4 flex-1">
+                                <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${project.gradient} text-2xl`}>
+                                    <IconComponent style={{ color: project.accentColor }} size={32} />
                                 </div>
-                                <h1 className="text-4xl font-bold md:text-5xl">{project.title}</h1>
+                                <div>
+                                    <div className="mb-1 flex items-center gap-2 text-sm text-muted-foreground uppercase tracking-wider font-mono">
+                                        {project.category}
+                                    </div>
+                                    <h1 className="text-4xl font-bold md:text-5xl">{project.title}</h1>
+                                </div>
                             </div>
+                            {project.liveUrl && project.liveUrl !== '#' && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="shrink-0 w-full md:w-auto"
+                                >
+                                    <Button size="lg" className="w-full md:w-auto rounded-full px-8 font-bold gap-2 group shadow-xl bg-primary text-black hover:bg-primary/90">
+                                        Visit Live Project
+                                        <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    </Button>
+                                </a>
+                            )}
                         </div>
                         <p className="mb-6 text-xl text-muted-foreground leading-relaxed">{project.description}</p>
 

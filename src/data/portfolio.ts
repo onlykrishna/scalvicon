@@ -81,7 +81,7 @@ export const portfolioProjects: PortfolioProject[] = [
             { label: "Specialties List", value: "15+", icon: "Stethoscope" },
         ],
         deliveryWeeks: 3,
-        liveUrl: "https://divinehospitalrbl.netlify.app/",
+        liveUrl: "https://divinehospitalbyscalvicon.netlify.app/",
         challenge: "Divine Hospital needed to bridge the gap between their advanced clinical capabilities and their digital visibility, especially for patients in Raebareli relying on Ayushman Bharat services.",
         solutionTitle: "Fast, Accessible & Informative Healthcare Hub",
         solutionDetails: [
@@ -148,7 +148,7 @@ export const portfolioProjects: PortfolioProject[] = [
             { label: "Conflicts", value: "Zero", icon: "CheckCircle" },
         ],
         deliveryWeeks: 4,
-        liveUrl: "#",
+        liveUrl: "https://blissbeautybyscalvicon.netlify.app/",
         challenge: "Bliss Beauty Lounge needed to translate the tactile, opulent essence of a premium physical salon into a digital experience. The primary goal was to automate the appointment scheduling process without losing the \"luxury touch\" that their high-profile clients expect.",
         solutionTitle: "The Digital Sanctuary",
         solutionDetails: [
