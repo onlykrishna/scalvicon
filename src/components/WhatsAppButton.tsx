@@ -16,7 +16,7 @@ const WhatsAppButton = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ delay: 1.5, type: "spring", damping: 15 }}
-                    className="fixed bottom-28 right-6 z-50 group"
+                    className="fixed bottom-20 right-6 z-50 group"
                 >
                     {/* Pulse ring */}
                     <span className="absolute inset-0 rounded-full bg-[#25d366] opacity-30 animate-ping" />
