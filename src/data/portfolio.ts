@@ -133,35 +133,36 @@ export const portfolioProjects: PortfolioProject[] = [
     {
         id: 2,
         slug: "bliss-beauty-lounge",
-        title: "Bliss Beauty Lounge",
-        category: "Salon & Spa",
-        tags: ["Salon", "Booking", "Gallery"],
-        gradient: "from-pink-600/20 to-purple-600/20",
-        accentColor: "#d946ef",
+        title: "Bliss Beauty Lounge Luxury Service & Wellness",
+        category: "Luxury Service / Wellness",
+        tags: ["Luxury", "Wellness", "Booking Engine", "Visual Lookbook"],
+        gradient: "from-rose-400/20 to-stone-400/20",
+        accentColor: "#e5b3a4", // Rose Gold tone
         icon: "Sparkles",
         description:
-            "Luxury salon website with Instagram-synced gallery, online booking calendar, price list, and WhatsApp chat integration.",
+            "Premium digital sanctuary for a high-end salon, featuring a frictionless multi-step booking engine and an immersive Instagram-style visual lookbook.",
         metrics: [
-            { label: "Bookings increase", value: "+200%", icon: "Calendar" },
-            { label: "Bounce rate drop", value: "-45%", icon: "TrendingDown" },
-            { label: "PageSpeed score", value: "91", icon: "Zap" },
+            { label: "Booking Flow", value: "4-Step", icon: "Calendar" },
+            { label: "Transformations", value: "100+", icon: "Sparkles" },
+            { label: "PageSpeed Score", value: "90+", icon: "Zap" },
+            { label: "Conflicts", value: "Zero", icon: "CheckCircle" },
         ],
         deliveryWeeks: 4,
         liveUrl: "#",
-        challenge: "Relying purely on Instagram DMs to manage weekend bookings was chaos. They were missing messages, double booking chairs, and losing revenue.",
-        solutionTitle: "The Instagram-to-Booking Funnel",
+        challenge: "Bliss Beauty Lounge needed to translate the tactile, opulent essence of a premium physical salon into a digital experience. The primary goal was to automate the appointment scheduling process without losing the \"luxury touch\" that their high-profile clients expect.",
+        solutionTitle: "The Digital Sanctuary",
         solutionDetails: [
-            "Implemented a visual-first design highlighting before/after transformations",
-            "Synced live Instagram feeds directly to the homepage to keep content fresh",
-            "Deployed a 3-step checkout booking funnel capturing ₹500 advance deposits",
-            "Created clear service menu architecture that upsold premium packages natively"
+            "Multi-Step Booking Engine: Developed a robust React state-machine to handle service selection, date-time picking (with real-time validation), and customer details in a choreographed flow.",
+            "Glassmorphism UI: Crafted a 'Luxury-First' design system using Tailwind v4, featuring a curated palette of Rose Gold, Cream, and Charcoal with soft-shadow glass overlays.",
+            "Immersive Lookbook: Built an Instagram-style masonry gallery with interactive lightboxes and category filters to showcase stylist artistry at high resolution.",
+            "Conversion Optimization: Integrated a persistent WhatsApp pulse-button and dynamic SEO/Open Graph metadata to ensure high-engagement social sharing."
         ],
         testimonial: {
-            quote: "The deposit system alone paid for the website in month one. The aesthetics exactly match my salon's premium vibe.",
+            quote: "The new booking system has completely streamlined our daily operations. Our clients constantly compliment the premium feel of the site, and the gallery has become our strongest tool for attracting new bridal transformations.",
             author: "Priya Singh",
             role: "Owner & Lead Stylist"
         },
-        techStack: ["React 18", "Framer Motion", "Razorpay Integration"]
+        techStack: ["React 19", "Vite", "Tailwind v4", "Framer Motion"]
     },
     {
         id: 3,

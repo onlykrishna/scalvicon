@@ -33,7 +33,7 @@ const iconMap: Record<string, LucideIcon> = {
     Stethoscope, Sparkles, Building2, UtensilsCrossed, Dumbbell, Scale,
     Users, Search, Zap, Calendar, TrendingDown, PieChart, Clock,
     MessageCircle, MapPin, UserPlus, TrendingUp, FileText, Shield,
-    HeartPulse, Smartphone, Music, Mic,
+    HeartPulse, Smartphone, Music, Mic, CheckCircle
 };
 
 export const PortfolioDetailPage = () => {
