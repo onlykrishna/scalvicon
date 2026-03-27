@@ -16,8 +16,8 @@ const SITE_NAME = "Scalvicon";
 const DEFAULT_TITLE = "Scalvicon — Premium Web Solutions for SMEs & Emerging Brands";
 const DEFAULT_DESC =
     "Premium web development and digital solutions tailored for SMEs and emerging brands. Scalvicon builds high-performance, SEO-optimized websites that drive growth.";
-const DEFAULT_IMAGE = "https://scalvicon-9bf2f.web.app/og-image.png";
-const SITE_URL = "https://scalvicon-9bf2f.web.app";
+const DEFAULT_IMAGE = "https://scalvicon.in/og-image.png";
+const SITE_URL = "https://scalvicon.in";
 const DEFAULT_KEYWORDS =
     "premium web solutions, Scalvicon, web development for SMEs, emerging brand digital strategy, custom business websites India, high-performance web design";
 

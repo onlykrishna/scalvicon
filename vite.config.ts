@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     Sitemap({
-      hostname: 'https://scalvicon-9bf2f.web.app',
+      hostname: 'https://scalvicon.in',
       dynamicRoutes: dynamicRoutes
     })
   ].filter(Boolean),

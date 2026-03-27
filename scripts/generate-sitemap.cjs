@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const HOSTNAME = 'https://scalvicon-9bf2f.web.app';
+const HOSTNAME = 'https://scalvicon.in';
 
 // Static routes
 const staticRoutes = [
