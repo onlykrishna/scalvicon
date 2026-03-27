@@ -181,7 +181,7 @@ export const portfolioProjects: PortfolioProject[] = [
             { label: "PageSpeed score", value: "89", icon: "Zap" },
         ],
         deliveryWeeks: 4,
-        liveUrl: "#",
+        liveUrl: "https://sharma-dental-clinic-official.vercel.app",
         challenge: "Bleeding ₹50,000/month on 99Acres listings competing with 100 other brokers, offering no distinct premium brand presence.",
         solutionTitle: "Whitelabel Property Asset Portal",
         solutionDetails: [
@@ -214,7 +214,7 @@ export const portfolioProjects: PortfolioProject[] = [
             { label: "PageSpeed score", value: "96", icon: "Zap" },
         ],
         deliveryWeeks: 3,
-        liveUrl: "#",
+        liveUrl: "https://biryanibuzz-web-app.vercel.app/",
         challenge: "Losing 25% margins giving revenue to Zomato/Swiggy. Their offline menu was great but online presence was non-existent.",
         solutionTitle: "Direct-to-Consumer Food Pipeline",
         solutionDetails: [
@@ -233,34 +233,36 @@ export const portfolioProjects: PortfolioProject[] = [
     {
         id: 5,
         slug: "fitzone-gym",
-        title: "FitZone Gym",
-        category: "Fitness",
-        tags: ["Fitness", "Membership", "SEO"],
+        title: "FitZone Gym Elite | Premium Fitness & Community",
+        category: "Elite Fitness & Wellness",
+        tags: ["Fitness", "Membership", "Booking Engine", "WhatsApp Integration"],
         gradient: "from-green-600/20 to-emerald-600/20",
         accentColor: "#10b981",
         icon: "Dumbbell",
         description:
-            "Gym and fitness center website with membership packages, class schedules, trainer profiles, and free trial sign-up flow.",
+            "High-performance digital sanctuary engineered for an independent elite gym, featuring automated membership flows and real-time class scheduling.",
         metrics: [
             { label: "Trial signups/month", value: "+35", icon: "UserPlus" },
             { label: "Member retention lift", value: "+28%", icon: "TrendingUp" },
-            { label: "PageSpeed score", value: "93", icon: "Zap" },
+            { label: "Google PageSpeed", value: "93", icon: "Zap" },
+            { label: "Build Timeline", value: "3 Weeks", icon: "Clock" },
         ],
         deliveryWeeks: 3,
-        liveUrl: "#",
-        challenge: "Competing against massive franchise gyms (Cult.fit) without the budget to out-spend them on Facebook Ads.",
-        solutionTitle: "Hyper-Local Community Authority",
+        liveUrl: "https://fitzone-gym-elite-2026.vercel.app/",
+        challenge: "Competing against massive franchise gyms (Cult.fit) without the budget to out-spend them on Ads, FitZone needed a digital presence that reflected their superior, personalized coaching.",
+        solutionTitle: "Hyper-Local Community Authority & Automation",
         solutionDetails: [
-            "Engineered an aggressive 'Claim Free Day Pass' sticky modal across all pages",
-            "Built out an exhaustive SEO structure capturing local 'gyms near me' traffic natively",
-            "Integrated trainer profile portfolios increasing trust and personal connection"
+            "Dynamic Class Scheduling: Real-time slot management for HIIT, Yoga, and Strength with live validation.",
+            "WhatsApp-Integrated Booking: Frictionless multi-step 'Claim Free Pass' flow delivering trials instantly.",
+            "Elite Biomechanical Testing: Specialized 'The Lab' section for data-driven physique analysis.",
+            "High-Touch Trainer Portfolios: Detailed profiles of lead coaches with direct appointment links."
         ],
         testimonial: {
-            quote: "We are finally capturing the organic traffic that Cult used to steal from us. The free pass funnel is a machine.",
-            author: "Rahul Verma",
-            role: "Head Coach"
+            quote: "Dominate your local fitness landscape. Join the community that out-performs, not out-spends.",
+            author: "FitZone Elite",
+            role: "Brand Ethos"
         },
-        techStack: ["React Router DOM", "Cloud Functions", "Nodemailer Alerts"]
+        techStack: ["React 19", "Vite", "Tailwind v4", "Framer Motion"]
     },
     {
         id: 6,
@@ -279,7 +281,7 @@ export const portfolioProjects: PortfolioProject[] = [
             { label: "PageSpeed score", value: "92", icon: "Zap" },
         ],
         deliveryWeeks: 4,
-        liveUrl: "#",
+        liveUrl: "https://legaledge-associates.vercel.app",
         challenge: "Old site looked like a scam from 2005. High net-worth corporate clients were bouncing immediately due to lack of trust.",
         solutionTitle: "The Trust & Authority Architecture",
         solutionDetails: [
