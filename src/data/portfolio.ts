@@ -114,7 +114,7 @@ export const portfolioProjects: PortfolioProject[] = [
             { label: "PageSpeed score", value: "94", icon: "Zap" },
         ],
         deliveryWeeks: 3,
-        liveUrl: "#",
+        liveUrl: "https://sharma-dental-clinic-official.vercel.app",
         challenge: "Dr. Sharma was losing 40% of calls because his receptionist couldn't handle the volume during peak hours. His old Wix site was invisible on Google Maps.",
         solutionTitle: "Automated Booking & Local SEO Dominance",
         solutionDetails: [
