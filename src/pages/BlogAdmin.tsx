@@ -15,6 +15,7 @@ import type { BlogPost, BlogStatus } from "@/types/blog";
 import { BLOG_CATEGORIES } from "@/types/blog";
 import { cn } from "@/lib/utils";
 import { fadeUp } from "@/lib/animations";
+import { RichTextEditor } from "@/components/RichTextEditor";
 
 // ─── Status badge ──────────────────────────────────────────────────────────────
 const StatusBadge = ({ status }: { status: BlogStatus }) => (
@@ -134,7 +135,7 @@ const PostFormModal = ({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96, y: 12 }}
                 transition={{ duration: 0.2 }}
-                className="w-full max-w-2xl bg-card border border-border rounded-card card-shadow flex flex-col max-h-[90vh]"
+                className="w-full max-w-3xl bg-card border border-border rounded-card card-shadow flex flex-col max-h-[92vh]"
             >
                 {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-border">
@@ -173,6 +174,27 @@ const PostFormModal = ({
                         />
                     </div>
 
+                    {/* Cover Image URL */}
+                    <div>
+                        <label className="text-xs text-muted-foreground uppercase tracking-wider mb-1 block">
+                            Cover Image URL <span className="text-muted-foreground/50">(optional)</span>
+                        </label>
+                        <input
+                            value={form.coverImage ?? ""}
+                            onChange={(e) => set("coverImage", e.target.value)}
+                            placeholder="https://images.unsplash.com/…"
+                            className={inputClass}
+                        />
+                        {form.coverImage && (
+                            <img
+                                src={form.coverImage}
+                                alt="Cover preview"
+                                className="mt-2 w-full h-32 object-cover rounded-lg border border-border"
+                                onError={(e) => (e.currentTarget.style.display = "none")}
+                            />
+                        )}
+                    </div>
+
                     {/* Excerpt */}
                     <div>
                         <label className="text-xs text-muted-foreground uppercase tracking-wider mb-1 block">
@@ -187,17 +209,15 @@ const PostFormModal = ({
                         />
                     </div>
 
-                    {/* Content */}
+                    {/* Content — Rich Text Editor */}
                     <div>
-                        <label className="text-xs text-muted-foreground uppercase tracking-wider mb-1 block">
-                            Content <span className="text-muted-foreground/50">(HTML / Markdown)</span>
+                        <label className="text-xs text-muted-foreground uppercase tracking-wider mb-1.5 block">
+                            Content * <span className="text-muted-foreground/50">(rich text — supports headings, bold, lists, code, images)</span>
                         </label>
-                        <textarea
+                        <RichTextEditor
                             value={form.content ?? ""}
-                            onChange={(e) => set("content", e.target.value)}
-                            placeholder="<h2>Introduction</h2><p>Your post content here…</p>"
-                            rows={8}
-                            className={cn(inputClass, "resize-y font-mono text-xs")}
+                            onChange={(html) => set("content", html)}
+                            placeholder="Start writing your blog post content…"
                         />
                     </div>
 

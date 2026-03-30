@@ -7,7 +7,7 @@ import {
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, ArrowLeft, Share2, Eye, BookOpen } from "lucide-react";
 import { format } from "date-fns";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown"; // kept for legacy posts
 import { toast } from "sonner";
 import { db } from "@/lib/firebase";
 import type { BlogPost as BlogPostType } from "@/types/blog";
@@ -18,7 +18,31 @@ import { fadeUp } from "@/lib/animations";
 
 // ─── Reading time ─────────────────────────────────────────────────────────────
 const readingTime = (content: string) =>
-    Math.max(1, Math.ceil(content.split(/\s+/).length / 200));
+    Math.max(1, Math.ceil(content.replace(/<[^>]+>/g, " ").split(/\s+/).length / 200));
+
+// ─── Detect if content is HTML or plain text / Markdown ──────────────────────
+const isHTML = (str: string) => /<[a-z][\s\S]*>/i.test(str);
+
+/**
+ * Light client-side sanitiser using DOMParser.
+ * Strips <script> and on* event attributes to prevent XSS,
+ * while preserving all formatting tags TipTap produces.
+ */
+const sanitiseHTML = (html: string): string => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    // Remove script tags
+    doc.querySelectorAll("script, style, iframe, object, embed").forEach((el) => el.remove());
+    // Strip dangerous attributes
+    doc.querySelectorAll("*").forEach((el) => {
+        Array.from(el.attributes).forEach((attr) => {
+            if (attr.name.startsWith("on") || attr.name === "srcdoc") {
+                el.removeAttribute(attr.name);
+            }
+        });
+    });
+    return doc.body.innerHTML;
+};
 
 // ─── Skeleton ─────────────────────────────────────────────────────────────────
 const PostSkeleton = () => (
@@ -224,9 +248,16 @@ const BlogPost = () => {
                             prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
                             prose-pre:bg-card prose-pre:border prose-pre:border-border
                             prose-blockquote:border-primary prose-blockquote:text-muted-foreground
+                            prose-img:rounded-xl prose-img:my-6
                             prose-hr:border-border"
                     >
-                        <ReactMarkdown>{post.content}</ReactMarkdown>
+                        {isHTML(post.content) ? (
+                            // New posts: TipTap HTML — render with sanitised dangerouslySetInnerHTML
+                            <div dangerouslySetInnerHTML={{ __html: sanitiseHTML(post.content) }} />
+                        ) : (
+                            // Legacy posts: plain text / Markdown — keep ReactMarkdown
+                            <ReactMarkdown>{post.content}</ReactMarkdown>
+                        )}
                     </motion.div>
 
                     {/* Tags */}
