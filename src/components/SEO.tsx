@@ -23,8 +23,8 @@ const DEFAULT_KEYWORDS =
 
 export const SEO = ({
     title = DEFAULT_TITLE,
-    description = DEFAULT_DESC,
-    image = DEFAULT_IMAGE,
+    description,
+    image,
     url = SITE_URL,
     type = "website",
     publishedTime,
@@ -36,6 +36,9 @@ export const SEO = ({
         ? title
         : `${title} | ${SITE_NAME}`;
 
+    // Always have a non-empty description and image
+    const resolvedDesc = description?.trim() || DEFAULT_DESC;
+    const resolvedImage = image?.trim() || DEFAULT_IMAGE;
     const keywordsStr = Array.isArray(keywords) ? keywords.join(", ") : keywords;
 
     return (
@@ -43,7 +46,7 @@ export const SEO = ({
             {/* Primary */}
             <title>{fullTitle}</title>
             <meta name="title" content={fullTitle} />
-            <meta name="description" content={description} />
+            <meta name="description" content={resolvedDesc} />
             {keywordsStr && <meta name="keywords" content={keywordsStr} />}
             <meta name="robots" content="index, follow" />
             <meta name="language" content="English" />
@@ -54,8 +57,8 @@ export const SEO = ({
             <meta property="og:site_name" content={SITE_NAME} />
             <meta property="og:url" content={url} />
             <meta property="og:title" content={fullTitle} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
+            <meta property="og:description" content={resolvedDesc} />
+            <meta property="og:image" content={resolvedImage} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             {publishedTime && (
@@ -68,8 +71,8 @@ export const SEO = ({
             <meta name="twitter:site" content="@scalvicon" />
             <meta name="twitter:url" content={url} />
             <meta name="twitter:title" content={fullTitle} />
-            <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={image} />
+            <meta name="twitter:description" content={resolvedDesc} />
+            <meta name="twitter:image" content={resolvedImage} />
 
             {/* JSON-LD Schema */}
             <script type="application/ld+json">
