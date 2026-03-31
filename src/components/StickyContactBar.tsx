@@ -51,7 +51,7 @@ export const StickyContactBar = () => {
                                 </Button>
                             </a>
 
-                            <a href="mailto:krishnamaurya2204@gmail.com">
+                            <a href="mailto:scalvicon@gmail.com">
                                 <Button variant="outline" size="sm" className="hidden md:inline-flex bg-background hover:bg-muted text-foreground">
                                     <Mail className="mr-2 h-4 w-4" />
                                     Email

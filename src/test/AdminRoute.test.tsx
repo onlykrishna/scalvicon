@@ -19,7 +19,7 @@ vi.mock("sonner", () => ({
     toast: { error: vi.fn(), success: vi.fn() },
 }));
 
-const ADMIN_EMAIL = "krishnamaurya2204@gmail.com";
+const ADMIN_EMAIL = "scalvicon@gmail.com";
 
 // ── Helper ──────────────────────────────────────────────────────────────────────
 const renderAdminRoute = () =>

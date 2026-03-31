@@ -11,7 +11,7 @@ admin.initializeApp();
 // OR via a .env.local file in the functions directory
 const EMAIL_USER = defineString("EMAIL_USER", { description: "Gmail address to send from" });
 const EMAIL_PASS = defineSecret("EMAIL_PASS");  // Stored as a Google Cloud Secret
-const ADMIN_EMAIL = defineString("ADMIN_EMAIL", { default: "krishnamaurya2204@gmail.com", description: "Admin recipient email" });
+const ADMIN_EMAIL = defineString("ADMIN_EMAIL", { default: "scalvicon@gmail.com", description: "Admin recipient email" });
 const OPENAI_API_KEY = defineSecret("OPENAI_API_KEY");
 
 // ─── Transporter factory (called at runtime so params are resolved) ───────────

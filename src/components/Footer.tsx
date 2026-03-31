@@ -101,10 +101,10 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="mailto:krishnamaurya2204@gmail.com"
+                  href="mailto:scalvicon@gmail.com"
                   className="hover:text-foreground transition-colors"
                 >
-                  krishnamaurya2204@gmail.com
+                  scalvicon@gmail.com
                 </a>
               </li>
               <li>

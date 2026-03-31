@@ -12,7 +12,7 @@ admin.initializeApp();
 // OR via a .env.local file in the functions directory
 const EMAIL_USER = (0, params_1.defineString)("EMAIL_USER", { description: "Gmail address to send from" });
 const EMAIL_PASS = (0, params_1.defineSecret)("EMAIL_PASS"); // Stored as a Google Cloud Secret
-const ADMIN_EMAIL = (0, params_1.defineString)("ADMIN_EMAIL", { default: "krishnamaurya2204@gmail.com", description: "Admin recipient email" });
+const ADMIN_EMAIL = (0, params_1.defineString)("ADMIN_EMAIL", { default: "scalvicon@gmail.com", description: "Admin recipient email" });
 const OPENAI_API_KEY = (0, params_1.defineSecret)("OPENAI_API_KEY");
 // ─── Transporter factory (called at runtime so params are resolved) ───────────
 const makeTransporter = (pass) => nodemailer.createTransport({

@@ -70,7 +70,7 @@ export const BottomCTAPopup = () => {
                                         Book Your Free Call
                                     </Button>
                                 </Link>
-                                <a href="mailto:krishnamaurya2204@gmail.com" className="w-full sm:w-auto">
+                                <a href="mailto:scalvicon@gmail.com" className="w-full sm:w-auto">
                                     <Button size="lg" variant="outline" className="w-full h-12 text-base">
                                         Email Us
                                     </Button>

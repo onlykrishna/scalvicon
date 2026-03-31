@@ -51,7 +51,7 @@ const CareersPage = () => {
                             <p className="max-w-md mx-auto mb-6">
                                 We aren't actively hiring at this exact moment, but we're always eager to meet talented frontend developers, UI/UX designers, and SEO specialists.
                             </p>
-                            <a href="mailto:krishnamaurya2204@gmail.com?subject=Careers%20Application%20-%20Spontaneous">
+                            <a href="mailto:scalvicon@gmail.com?subject=Careers%20Application%20-%20Spontaneous">
                                 <Button variant="outline" className="gap-2">
                                     Send us your portfolio <ArrowRight size={16} />
                                 </Button>
