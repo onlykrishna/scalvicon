@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MarqueeTicker from "@/components/MarqueeTicker";
@@ -20,7 +21,28 @@ import { SEO } from "@/components/SEO";
 
 const SectionLoading = () => <div className="h-[300px] w-full bg-background animate-pulse" />;
 
-const Index = () => (
+const Index = () => {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace("#", "");
+      let attempts = 0;
+      const maxAttempts = 50;
+
+      const scrollInterval = setInterval(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          clearInterval(scrollInterval);
+        }
+        attempts++;
+        if (attempts >= maxAttempts) clearInterval(scrollInterval);
+      }, 100);
+
+      return () => clearInterval(scrollInterval);
+    }
+  }, [hash]);
+  return (
   <div className="min-h-screen bg-background text-foreground">
     <SEO 
       title="Premium Web Solutions for SMEs & Emerging Brands"
@@ -45,6 +67,7 @@ const Index = () => (
     <WhatsAppButton />
     <ScrollToTop />
   </div>
-);
+  );
+};
 
 export default Index;
